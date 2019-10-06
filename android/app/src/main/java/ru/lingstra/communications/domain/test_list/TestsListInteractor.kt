@@ -1,4 +1,4 @@
-package ru.lingstra.communications.domain.hand_shakes
+package ru.lingstra.communications.domain.test_list
 
 import io.reactivex.Observable
 import ru.lingstra.communications.data.repository.TestsListRepository

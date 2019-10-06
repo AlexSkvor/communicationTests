@@ -3,9 +3,9 @@ package ru.lingstra.communications.presentation.list
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import ru.lingstra.communications.R
-import ru.lingstra.communications.domain.hand_shakes.TestsListInteractor
-import ru.lingstra.communications.domain.hand_shakes.TestsListPartialState
-import ru.lingstra.communications.domain.hand_shakes.TestsListViewState
+import ru.lingstra.communications.domain.test_list.TestsListInteractor
+import ru.lingstra.communications.domain.test_list.TestsListPartialState
+import ru.lingstra.communications.domain.test_list.TestsListViewState
 import ru.lingstra.communications.presentation.base.BaseMviPresenter
 import ru.lingstra.communications.system.ResourceManager
 import ru.lingstra.communications.system.SystemMessage

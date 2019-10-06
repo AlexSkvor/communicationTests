@@ -13,3 +13,6 @@ annotation class SuccessOkHttpClient
 
 @Qualifier
 annotation class FilterSearch
+
+@Qualifier
+annotation class DefaultFilesDir

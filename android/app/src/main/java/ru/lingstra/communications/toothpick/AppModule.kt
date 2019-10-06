@@ -1,6 +1,7 @@
 package ru.lingstra.communications.toothpick
 
 import android.content.Context
+import android.os.Environment
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import ru.lingstra.communications.data.database.AppDatabase
@@ -49,5 +50,8 @@ class AppModule(context: Context, serverPath: String) : Module() {
             .singletonInScope()
         bind(FactAnswerDao::class.java).toProvider(FactAnswerDaoProvider::class.java)
             .singletonInScope()
+
+        val filesDir = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)?.toString()
+        bind(String::class.java).withName(DefaultFilesDir::class.java).toInstance(filesDir)
     }
 }

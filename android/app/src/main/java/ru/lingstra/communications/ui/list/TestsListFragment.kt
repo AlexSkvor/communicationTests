@@ -4,12 +4,10 @@ import com.jakewharton.rxbinding2.view.clicks
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_tests_list.*
 import ru.lingstra.communications.R
-import ru.lingstra.communications.domain.hand_shakes.TestsListViewState
+import ru.lingstra.communications.domain.test_list.TestsListViewState
 import ru.lingstra.communications.presentation.list.TestsListPresenter
 import ru.lingstra.communications.presentation.list.TestsListView
 import ru.lingstra.communications.ui.base.MviBaseFragment
-import toothpick.Scope
-import toothpick.config.Module
 
 class TestsListFragment : MviBaseFragment<TestsListView, TestsListPresenter>(), TestsListView {
 

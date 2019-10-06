@@ -3,7 +3,7 @@ package ru.lingstra.communications
 import org.junit.Test
 
 /**
- * Example local unit test, which will execute on the development machine (host).
+ * Example local unit text, which will execute on the development machine (host).
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
