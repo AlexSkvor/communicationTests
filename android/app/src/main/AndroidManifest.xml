@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="ru.lingstra.avitocopy">
+          package="ru.lingstra.communications">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-            android:name=".App"
+            android:name="ru.lingstra.communications.App"
             android:allowBackup="true"
             android:label="@string/app_name"
             android:icon="@mipmap/ic_launcher"
@@ -13,7 +13,7 @@
             tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
         <activity
-                android:name=".ui.AppActivity"
+                android:name="ru.lingstra.communications.ui.AppActivity"
                 android:launchMode="singleInstance"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="adjustPan">

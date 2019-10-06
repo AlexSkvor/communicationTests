@@ -7,13 +7,13 @@
 
     <fragment
             android:id="@+id/testsListFragment"
-            android:name="ru.lingstra.avitocopy.ui.list.TestsListFragment"
+            android:name="ru.lingstra.communications.ui.list.TestsListFragment"
             android:label="TestsListFragment"
             tools:layout="@layout/fragment_tests_list"/>
 
     <fragment
             android:id="@+id/filtersFragment"
-            android:name="ru.lingstra.avitocopy.ui.token.TokenFragment"
+            android:name="ru.lingstra.communications.ui.token.TokenFragment"
             android:label="FiltersFragment"
             tools:layout="@layout/fragment_token"/>
 
