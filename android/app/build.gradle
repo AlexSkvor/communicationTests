@@ -7,7 +7,7 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "ru.lingstra.communications"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -80,6 +80,10 @@ dependencies {
     implementation "androidx.room:room-runtime:$roomDatabase"
     implementation "androidx.room:room-rxjava2:$roomDatabase"
     kapt "androidx.room:room-compiler:$roomDatabase"
+
+    //    Stetho
+    implementation "com.facebook.stetho:stetho:$stethoVersion"
+    implementation "com.facebook.stetho:stetho-okhttp3:$stethoVersion"
 
     // test lib
     testApi "junit:junit:$junitVersion"

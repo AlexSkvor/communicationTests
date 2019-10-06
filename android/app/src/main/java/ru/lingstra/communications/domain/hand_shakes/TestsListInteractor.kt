@@ -1,10 +1,18 @@
 package ru.lingstra.communications.domain.hand_shakes
 
+import io.reactivex.Observable
 import ru.lingstra.communications.data.repository.TestsListRepository
+import ru.lingstra.communications.endWith
 import javax.inject.Inject
 
 class TestsListInteractor @Inject constructor(
     private val repository: TestsListRepository
 ) {
 
+    fun doAction(): Observable<TestsListPartialState> =
+        repository.doSomething()
+            .toSingleDefault(TestsListPartialState.Loaading(false).partial())
+            .toObservable()
+            .startWith(TestsListPartialState.Loaading(true))
+            .endWith(TestsListPartialState.Loaading(false))
 }

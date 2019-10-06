@@ -1,5 +1,8 @@
 package ru.lingstra.communications.ui.list
 
+import com.jakewharton.rxbinding2.view.clicks
+import io.reactivex.Observable
+import kotlinx.android.synthetic.main.fragment_tests_list.*
 import ru.lingstra.communications.R
 import ru.lingstra.communications.domain.hand_shakes.TestsListViewState
 import ru.lingstra.communications.presentation.list.TestsListPresenter
@@ -16,13 +19,7 @@ class TestsListFragment : MviBaseFragment<TestsListView, TestsListPresenter>(), 
     override fun createPresenter(): TestsListPresenter =
         scope.getInstance(TestsListPresenter::class.java)
 
-    override fun installModules(scope: Scope) {
-        scope.installModules(object : Module() {
-            init {
-                //TODO
-            }
-        })
-    }
+    override fun action(): Observable<Unit> = start.clicks()
 
     override fun render(state: TestsListViewState) {
 
