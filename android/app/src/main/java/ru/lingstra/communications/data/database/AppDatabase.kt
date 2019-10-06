@@ -12,7 +12,8 @@ import ru.lingstra.communications.data.database.entities.*
         ResultReferenceEntity::class,
         QuestionEntity::class,
         AnswerEntity::class,
-        TestPassingEntity::class],
+        TestPassingEntity::class,
+        FactAnswerEntity::class],
     version = 1, exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -22,4 +23,5 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun questionDao(): QuestionDao
     abstract fun answerDao(): AnswerDao
     abstract fun testPassingDao(): TestPassingDao
+    abstract fun factAnswerDao(): FactAnswerDao
 }
