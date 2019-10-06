@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/newTokenHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/marginBig"
+            android:gravity="center"
+            android:text="@string/setNewTokenHint" />
+
+    <EditText
+            android:id="@+id/newTokenEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/marginBig"
+            android:inputType="text"
+            tools:ignore="Autofill,LabelFor" />
+
+    <Button
+            android:id="@+id/saveTokenButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/marginBig"
+            android:text="@string/save" />
+
+</LinearLayout>

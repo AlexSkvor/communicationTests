@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">HandShakes</string>
+    <string name="stub">TODO</string>
+    <string name="errorHappened">Случилась ошибка!</string>
+
+    <!--Token-->
+    <string name="setNewTokenHint">Введите токен в поле ниже и нажмите сохранить</string>
+    <string name="token">Токен</string>
+    <string name="save">Сохранить</string>
+
+    <!--Search HandShakes-->
+    <string name="firstRefHint">Первая ссылка на страницу</string>
+    <string name="secondRefHint">Вторая ссылка на страницу</string>
+    <string name="start">Начать</string>
+    <string name="timeSinceStart">Время: %d</string>
+    <string name="queriesSinceStart">Запросы: %d</string>
+    <string name="nothingFound">Связи нет!!!!!</string>
+
+</resources>

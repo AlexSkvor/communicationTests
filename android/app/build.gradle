@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "ru.lingstra.avitocopy"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation("io.coil-kt:coil:0.7.0")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    //android x support lib
+    implementation "androidx.appcompat:appcompat:$appcompatAndroidX"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayoutAndroidX"
+    implementation "com.google.android.material:material:$materialAndroidX"
+    implementation "androidx.cardview:cardview:$cardviewAndroidX"
+    implementation 'androidx.core:core-ktx:1.1.0'
+    // navigation component
+    implementation 'androidx.navigation:navigation-fragment:2.2.0-alpha03'
+    implementation 'androidx.navigation:navigation-ui:2.2.0-alpha03'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.2.0-alpha03'
+    //    RxJava2
+    implementation "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
+    implementation "com.jakewharton.rxrelay2:rxrelay:$rxrelayVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxbindingsVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding:$rxbindingsVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding-design:$rxbindingsVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$rxbindingsVersion"
+    //    Mosby
+    implementation 'com.hannesdorfmann.mosby3:mvi:3.1.1'
+    //    Toothpick
+    implementation "com.github.stephanenicolas.toothpick:toothpick-runtime:$toothpickVersion"
+    kapt "com.github.stephanenicolas.toothpick:toothpick-compiler:$toothpickVersion"
+    // Anko Commons
+    implementation "org.jetbrains.anko:anko-commons:$ankoVersion"
+    //    AdapterDelegates
+    implementation "com.hannesdorfmann:adapterdelegates3:$adapterDelegatesVersion"
+    //    rounded image
+    implementation "com.makeramen:roundedimageview:$rivVersion"
+    //    Transitions Everywhere!!!
+    implementation "com.andkulikov:transitionseverywhere:$transitionseverywhere"
+    //    ThreetenABP
+    implementation "com.jakewharton.threetenabp:threetenabp:$threetenABPVersion"
+    //    Timber
+    implementation "com.jakewharton.timber:timber:$timberVersion"
+    // network lib
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+    //json lib
+    implementation "com.google.code.gson:gson:$gson"
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
+
+    // test lib
+    testApi "junit:junit:$junitVersion"
+    testImplementation "org.mockito:mockito-core:2.27.0"
+    testApi "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+    testApi "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
+    androidTestImplementation 'org.mockito:mockito-android:2.24.5'
+    androidTestImplementation "androidx.test:runner:$testRunner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+}

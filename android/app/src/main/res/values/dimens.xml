@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--font sizes-->
+    <dimen name="textSizeSuperSmall">8sp</dimen>
+    <dimen name="textSizeExtraSmall">10sp</dimen>
+    <dimen name="textSizeSmall">12sp</dimen>
+    <dimen name="textSizeNormal">14sp</dimen>
+    <dimen name="textSizeBig">16sp</dimen>
+    <dimen name="textSizeExtraBig">18sp</dimen>
+    <dimen name="textSizeLarge">20sp</dimen>
+    <dimen name="textSizeExtraLarge">22sp</dimen>
+    <dimen name="textSizeHuge">24sp</dimen>
+    <dimen name="textSizeExtraHuge">26sp</dimen>
+    <dimen name="textSizeSuperHuge">28sp</dimen>
+
+    <!--non-standard-->
+    <dimen name="auth_font_small">15sp</dimen>
+    <dimen name="superBigTextSize">40sp</dimen>
+
+    <!--margin sizes-->
+    <dimen name="marginSuperSmall">2dp</dimen>
+    <dimen name="marginExtraSmall">4dp</dimen>
+    <dimen name="marginSmall">8dp</dimen>
+    <dimen name="marginNormal">12dp</dimen>
+    <dimen name="marginBig">16dp</dimen>
+    <dimen name="marginExtraBig">20dp</dimen>
+    <dimen name="marginSuperBig">24dp</dimen>
+    <dimen name="marginLarge">28dp</dimen>
+    <dimen name="marginExtraLarge">32dp</dimen>
+    <dimen name="marginSuperLarge">40dp</dimen>
+    <dimen name="marginHuge">48dp</dimen>
+    <dimen name="marginExtraHuge">56dp</dimen>
+    <dimen name="marginSuperHuge">64dp</dimen>
+    <dimen name="bigPadding">80dp</dimen>
+
+    <!-- non-standard -->
+    <dimen name="task_card_text_margin">8dp</dimen>
+    <dimen name="task_recycler_width">500dp</dimen>
+    <dimen name="task_card_width">240dp</dimen>
+    <dimen name="summary_panel_side_margin">58dp</dimen>
+    <dimen name="summary_panel_vertical_margin">20dp</dimen>
+    <dimen name="home_screen_check_list_margin">50dp</dimen>
+    <dimen name="home_screen_text_margin">5dp</dimen>
+    <dimen name="home_screen_text_vertical_padding">5dp</dimen>
+    <dimen name="home_screen_card_margin">5dp</dimen>
+
+    <!--special dimens -->
+    <dimen name="login_corners_big">8dp</dimen>
+    <dimen name="login_corners_small">2dp</dimen>
+
+</resources>
