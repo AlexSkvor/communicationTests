@@ -3,6 +3,10 @@ package ru.lingstra.communications.toothpick
 import android.content.Context
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import ru.lingstra.communications.data.database.AppDatabase
+import ru.lingstra.communications.data.database.dao.UserDao
+import ru.lingstra.communications.data.database.providers.AppDatabaseProvider
+import ru.lingstra.communications.data.database.providers.UserDaoProvider
 import ru.lingstra.communications.data.prefs.AppPrefs
 import ru.lingstra.communications.data.prefs.AppPrefsStorage
 import ru.lingstra.communications.system.*
@@ -33,5 +37,9 @@ class AppModule(context: Context, serverPath: String) : Module() {
         bind(NetworkApi::class.java)
             .toProvider(ApiProvider::class.java)
             .singletonInScope()
+
+        //DB binding
+        bind(AppDatabase::class.java).toProvider(AppDatabaseProvider::class.java).singletonInScope()
+        bind(UserDao::class.java).toProvider(UserDaoProvider::class.java).singletonInScope()
     }
 }

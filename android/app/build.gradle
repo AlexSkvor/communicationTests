@@ -76,6 +76,11 @@ dependencies {
     implementation "com.google.code.gson:gson:$gson"
     implementation "com.squareup.picasso:picasso:$picassoVersion"
 
+    // database
+    implementation "androidx.room:room-runtime:$roomDatabase"
+    implementation "androidx.room:room-rxjava2:$roomDatabase"
+    kapt "androidx.room:room-compiler:$roomDatabase"
+
     // test lib
     testApi "junit:junit:$junitVersion"
     testImplementation "org.mockito:mockito-core:2.27.0"

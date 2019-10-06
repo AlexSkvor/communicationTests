@@ -35,6 +35,9 @@ buildscript {
     // log lib
     ext.timberVersion = '4.7.1'
 
+    // room
+    ext.roomDatabase = '2.1.0'
+
     //test lib version
     ext.junitVersion = '4.12'
     ext.testRunner = '1.2.0'
@@ -48,7 +51,7 @@ buildscript {
         
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:3.5.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
