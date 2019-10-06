@@ -14,5 +14,6 @@ class TestsListInteractor @Inject constructor(
             .toSingleDefault(TestsListPartialState.Loaading(false).partial())
             .toObservable()
             .startWith(TestsListPartialState.Loaading(true))
+            .onErrorReturn { TestsListPartialState.Error(it) }
             .endWith(TestsListPartialState.Loaading(false))
 }
