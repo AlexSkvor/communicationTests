@@ -2,14 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            app:startDestination="@id/carsListFragment"
+            app:startDestination="@id/testsListFragment"
             android:id="@+id/main_graph">
 
     <fragment
-            android:id="@+id/carsListFragment"
-            android:name="ru.lingstra.avitocopy.ui.list.HandShakesFragment"
-            android:label="CarsListFragment"
-            tools:layout="@layout/fragment_hand_shakes"/>
+            android:id="@+id/testsListFragment"
+            android:name="ru.lingstra.avitocopy.ui.list.TestsListFragment"
+            android:label="TestsListFragment"
+            tools:layout="@layout/fragment_tests_list"/>
 
     <fragment
             android:id="@+id/filtersFragment"
