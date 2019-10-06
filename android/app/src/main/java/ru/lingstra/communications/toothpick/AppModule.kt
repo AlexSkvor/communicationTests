@@ -4,13 +4,11 @@ import android.content.Context
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import ru.lingstra.communications.data.database.AppDatabase
+import ru.lingstra.communications.data.database.dao.QuestionDao
 import ru.lingstra.communications.data.database.dao.ResultReferenceDao
 import ru.lingstra.communications.data.database.dao.TestDao
 import ru.lingstra.communications.data.database.dao.UserDao
-import ru.lingstra.communications.data.database.providers.AppDatabaseProvider
-import ru.lingstra.communications.data.database.providers.ResultReferenceDaoProvider
-import ru.lingstra.communications.data.database.providers.TestDaoProvider
-import ru.lingstra.communications.data.database.providers.UserDaoProvider
+import ru.lingstra.communications.data.database.providers.*
 import ru.lingstra.communications.data.prefs.AppPrefs
 import ru.lingstra.communications.data.prefs.AppPrefsStorage
 import ru.lingstra.communications.system.*
@@ -48,5 +46,6 @@ class AppModule(context: Context, serverPath: String) : Module() {
         bind(TestDao::class.java).toProvider(TestDaoProvider::class.java).singletonInScope()
         bind(ResultReferenceDao::class.java).toProvider(ResultReferenceDaoProvider::class.java)
             .singletonInScope()
+        bind(QuestionDao::class.java).toProvider(QuestionDaoProvider::class.java).singletonInScope()
     }
 }
