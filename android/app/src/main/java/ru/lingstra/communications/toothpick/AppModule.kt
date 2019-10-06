@@ -45,5 +45,7 @@ class AppModule(context: Context, serverPath: String) : Module() {
             .singletonInScope()
         bind(QuestionDao::class.java).toProvider(QuestionDaoProvider::class.java).singletonInScope()
         bind(AnswerDao::class.java).toProvider(AnswerDaoProvider::class.java).singletonInScope()
+        bind(TestPassingDao::class.java).toProvider(TestPassingDaoProvider::class.java)
+            .singletonInScope()
     }
 }
