@@ -2,20 +2,16 @@ package ru.lingstra.communications.data.database.relations
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import ru.lingstra.communications.data.database.entities.AnswerEntity
+import ru.lingstra.communications.data.database.entities.QuestionEntity
 import ru.lingstra.communications.data.database.entities.ResultReferenceEntity
 import ru.lingstra.communications.data.database.entities.TestEntity
 import ru.lingstra.communications.domain.models.Test
-import java.util.*
 
 data class Test(
     @Embedded val innerTest: TestEntity
 ) {
 
-    private val uuid: String
-        get() = UUID.randomUUID().toString()
-
-    @Relation(parentColumn = "id", entityColumn = "questionId", entity = AnswerEntity::class)
+    @Relation(parentColumn = "id", entityColumn = "testId", entity = QuestionEntity::class)
     lateinit var questions: List<QuestionWithAnswers>
 
     operator fun component2(): List<QuestionWithAnswers> = questions
