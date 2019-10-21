@@ -19,7 +19,6 @@ class TestsListPresenter @Inject constructor(
 ) : BaseMviPresenter<TestsListView, TestsListViewState>() {
 
     override fun bindIntents() {
-
         val actions = getActions().share()
         subscribeActions(actions)
         subscribeViewState(
@@ -30,8 +29,10 @@ class TestsListPresenter @Inject constructor(
 
     private val reducer = BiFunction { oldState: TestsListViewState, it: TestsListPartialState ->
         when (it) {
+            is TestsListPartialState.TestsList -> oldState.copy(tests = it.tests)
             is TestsListPartialState.Error -> oldState
-            is TestsListPartialState.Loaading -> oldState
+            is TestsListPartialState.Loading -> oldState
+            is TestsListPartialState.TestPressed -> oldState
         }
     }
 
@@ -42,16 +43,23 @@ class TestsListPresenter @Inject constructor(
                     systemMessage.send(resourceManager.getString(R.string.errorHappened))
                     Timber.e(it.error)
                 }
-                is TestsListPartialState.Loaading -> systemMessage.showProgress(it.loading)
+                is TestsListPartialState.TestPressed -> systemMessage.send(it.test.name)
+                is TestsListPartialState.Loading -> systemMessage.showProgress(it.loading)
             }
         }.bind()
     }
 
     private fun getActions(): Observable<TestsListPartialState> {
-        val action = intent(TestsListView::action)
-            .switchMap { interactor.synchronize() }
+        val syncAction = intent(TestsListView::syncIntent)
+            .switchMap { interactor.synchronize().concatWith(interactor.getTestsList()) }
 
-        val list = listOf(action)
+        val loadListAction = intent(TestsListView::loadListIntent)
+            .switchMap { interactor.getTestsList() }
+
+        val clickedAction = intent(TestsListView::testClicked)
+            .map { TestsListPartialState.TestPressed(it) }
+
+        val list = listOf(syncAction, loadListAction, clickedAction)
         return Observable.merge(list)
     }
 }

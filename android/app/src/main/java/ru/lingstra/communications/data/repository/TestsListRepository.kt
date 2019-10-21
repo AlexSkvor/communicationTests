@@ -1,6 +1,6 @@
 package ru.lingstra.communications.data.repository
 
-import io.reactivex.Single
+import io.reactivex.Observable
 import ru.lingstra.communications.data.database.dao.TestDao
 import ru.lingstra.communications.domain.models.Test
 import ru.lingstra.communications.flattenMap
@@ -12,9 +12,10 @@ class TestsListRepository @Inject constructor(
     private val scheduler: SchedulersProvider
 ) {
 
-    fun getTestsList(): Single<List<Test>> =
+    fun getTestsList(): Observable<List<Test>> =
         testsDao.getAllTests()
             .flattenMap { it.toDomain() }
+            .toObservable()
             .subscribeOn(scheduler.io())
             .observeOn(scheduler.ui())
 }

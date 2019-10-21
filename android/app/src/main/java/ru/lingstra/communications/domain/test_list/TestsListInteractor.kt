@@ -11,11 +11,17 @@ class TestsListInteractor @Inject constructor(
     private val syncRepository: SynchronizationRepository
 ) {
 
+    fun getTestsList() = repository.getTestsList()
+        .map { TestsListPartialState.TestsList(it).partial() }
+        .startWith(TestsListPartialState.Loading(true))
+        .onErrorReturn { TestsListPartialState.Error(it) }
+        .endWith(TestsListPartialState.Loading(false))
+
     fun synchronize(): Observable<TestsListPartialState> =
         syncRepository.loadAllTests()
-            .toSingleDefault(TestsListPartialState.Loaading(false).partial())
+            .toSingleDefault(TestsListPartialState.Loading(false).partial())
             .toObservable()
-            .startWith(TestsListPartialState.Loaading(true))
+            .startWith(TestsListPartialState.Loading(true))
             .onErrorReturn { TestsListPartialState.Error(it) }
-            .endWith(TestsListPartialState.Loaading(false))
+            .endWith(TestsListPartialState.Loading(false))
 }

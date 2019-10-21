@@ -1,5 +1,7 @@
 package ru.lingstra.communications.domain.test_list
 
+import ru.lingstra.communications.domain.models.Test
+
 data class TestsListViewState(
-    val k: Int = 0
+    val tests: List<Test> = listOf()
 )

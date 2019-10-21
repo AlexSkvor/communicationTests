@@ -5,11 +5,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <Button
-            android:id="@+id/start"
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/testsRecycler"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/marginBig"
-            android:text="@string/start" />
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_test" />
 
 </LinearLayout>
