@@ -8,6 +8,10 @@ import ru.lingstra.communications.data.database.relations.Test
 
 @Dao
 interface TestDao : BaseDao<TestEntity> {
+
     @Query("SELECT * from tests WHERE id = :key")
     fun getTestById(key: String): Single<Test>
+
+    @Query("SELECT * from tests")
+    fun getAllTests(): Single<List<Test>>
 }

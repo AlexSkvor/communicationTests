@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.reactivex.Observable
+import io.reactivex.Single
 import timber.log.Timber
 
 fun Fragment.hideKeyboard() {
@@ -54,3 +55,6 @@ fun String.toIntOrMinusOne(): Int = try {
 } catch (e: Exception) {
     0
 }
+
+inline fun <reified T, N> Single<List<T>>.flattenMap(crossinline mapper: (T) -> N): Single<List<N>> =
+    flattenAsFlowable { it }.map { mapper(it) }.toList()

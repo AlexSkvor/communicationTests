@@ -49,7 +49,7 @@ class TestsListPresenter @Inject constructor(
 
     private fun getActions(): Observable<TestsListPartialState> {
         val action = intent(TestsListView::action)
-            .switchMap { interactor.doAction() }
+            .switchMap { interactor.synchronize() }
 
         val list = listOf(action)
         return Observable.merge(list)
