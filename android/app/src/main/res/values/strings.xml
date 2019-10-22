@@ -15,5 +15,7 @@
     <string name="testName">Тест: %s</string>
     <string name="questionsNumber">Вопросов: %d</string>
     <string name="testsList">Тесты</string>
+    <string name="completeTest">Завершить тест</string>
+    <string name="answers">Ответы:</string>
 
 </resources>

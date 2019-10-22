@@ -1,14 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/testPassingLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:orientation="vertical">
 
     <TextView
+            android:id="@+id/titleTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AAAAAAAAAAAAA" />
+            android:layout_marginTop="@dimen/marginBig"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeExtraBig"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Заголовок теста" />
 
-</LinearLayout>
+    <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/marginBig"
+            android:layout_marginTop="@dimen/marginBig"
+            android:layout_marginEnd="@dimen/marginBig"
+            android:textSize="@dimen/textSizeBig"
+            app:layout_constraintEnd_toEndOf="@+id/titleTest"
+            app:layout_constraintStart_toStartOf="@+id/titleTest"
+            app:layout_constraintTop_toBottomOf="@id/titleTest"
+            tools:text="Описание теста" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/questionsRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/marginBig"
+            android:layout_marginBottom="@dimen/marginNormal"
+            app:layout_constraintBottom_toTopOf="@id/completeButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/description"
+            tools:listitem="@layout/item_question" />
+
+    <Button
+            android:id="@+id/completeButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginSuperBig"
+            android:layout_marginTop="@dimen/marginNormal"
+            android:layout_marginEnd="@dimen/marginSuperBig"
+            android:layout_marginBottom="@dimen/marginNormal"
+            android:background="@color/blueTextColor"
+            android:text="@string/completeTest"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
