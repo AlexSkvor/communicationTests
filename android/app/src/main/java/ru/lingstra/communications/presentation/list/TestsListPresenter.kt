@@ -7,6 +7,7 @@ import ru.lingstra.communications.domain.test_list.TestsListInteractor
 import ru.lingstra.communications.domain.test_list.TestsListPartialState
 import ru.lingstra.communications.domain.test_list.TestsListViewState
 import ru.lingstra.communications.presentation.base.BaseMviPresenter
+import ru.lingstra.communications.system.NavigationManager
 import ru.lingstra.communications.system.ResourceManager
 import ru.lingstra.communications.system.SystemMessage
 import timber.log.Timber
@@ -15,6 +16,7 @@ import javax.inject.Inject
 class TestsListPresenter @Inject constructor(
     private val resourceManager: ResourceManager,
     private val systemMessage: SystemMessage,
+    private val navigationManager: NavigationManager,
     private val interactor: TestsListInteractor
 ) : BaseMviPresenter<TestsListView, TestsListViewState>() {
 
@@ -43,7 +45,7 @@ class TestsListPresenter @Inject constructor(
                     systemMessage.send(resourceManager.getString(R.string.errorHappened))
                     Timber.e(it.error)
                 }
-                is TestsListPartialState.TestPressed -> systemMessage.send(it.test.name)
+                is TestsListPartialState.TestPressed -> navigationManager.navigate(R.id.testPassingFragment)//systemMessage.send(it.test.name)
                 is TestsListPartialState.Loading -> systemMessage.showProgress(it.loading)
             }
         }.bind()
