@@ -21,6 +21,7 @@ class AppModule(context: Context, serverPath: String) : Module() {
         bind(AppPrefs::class.java).to(AppPrefsStorage::class.java).singletonInScope()
         bind(ResourceManager::class.java).singletonInScope()
         bind(SystemMessage::class.java).toInstance(SystemMessage())
+        bind(NavigationManager::class.java).toInstance(NavigationManager())
         bind(SchedulersProvider::class.java).toInstance(AppSchedulers())
         bind(String::class.java).withName(DefaultServerPath::class.java).toInstance(serverPath)
 

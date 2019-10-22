@@ -13,6 +13,7 @@ import ru.lingstra.communications.domain.app.AppViewState
 import ru.lingstra.communications.presentation.app.AppPresenter
 import ru.lingstra.communications.presentation.app.AppView
 import ru.lingstra.communications.setupWithNavControllerReselectionDisabled
+import ru.lingstra.communications.system.NavigationManager
 import ru.lingstra.communications.toothpick.DI
 import ru.lingstra.communications.ui.base.ProgressDialogFragment
 import toothpick.Toothpick
@@ -35,21 +36,30 @@ class AppActivity : MviActivity<AppView, AppPresenter>(), AppView {
     private val refreshIntent: PublishRelay<Unit> = PublishRelay.create()
     override fun refresh(): Observable<Unit> = refreshIntent.hide()
 
-    private val navigator: NavController by lazy { findNavController(R.id.mainNavHostFragment) }
+    private val navController: NavController by lazy { findNavController(R.id.mainNavHostFragment) }
 
     override fun render(state: AppViewState) {
         when (state.render) {
             AppViewState.Render.TOAST -> showToast(state.toast)
             AppViewState.Render.PROGRESS -> showProgress(state.progress)
-            else -> {
-            }
+            AppViewState.Render.NAVIGATION -> navigate(state.navigationAction)
+            AppViewState.Render.NONE -> nothingToRender()
         }
         if (state.render != AppViewState.Render.NONE) refreshIntent.accept(Unit)
     }
 
+    private fun navigate(action: NavigationManager.NavigationAction) {
+        when (action) {
+            is NavigationManager.NavigationAction.Screen -> navController.navigate(action.screenId)
+            is NavigationManager.NavigationAction.Back -> navController.popBackStack()
+        }
+    }
+
+    private fun nothingToRender() {}
+
     override fun onResume() {
         super.onResume()
-        bottomNavigation.setupWithNavControllerReselectionDisabled(navigator)
+        bottomNavigation.setupWithNavControllerReselectionDisabled(navController)
     }
 
     private fun showProgress(visible: Boolean) {

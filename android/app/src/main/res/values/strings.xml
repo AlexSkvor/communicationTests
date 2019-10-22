@@ -5,7 +5,7 @@
 
     <!--Token-->
     <string name="setNewTokenHint">Введите токен в поле ниже и нажмите сохранить</string>
-    <string name="token">Токен</string>
+    <string name="theory">Теория</string>
     <string name="save">Сохранить</string>
 
     <string name="start">Начать</string>
@@ -14,5 +14,6 @@
 
     <string name="testName">Тест: %s</string>
     <string name="questionsNumber">Вопросов: %d</string>
+    <string name="testsList">Тесты</string>
 
 </resources>

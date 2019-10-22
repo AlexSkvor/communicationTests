@@ -5,11 +5,13 @@ import io.reactivex.functions.BiFunction
 import ru.lingstra.communications.domain.app.AppViewState
 import ru.lingstra.communications.domain.app.AppPartialState
 import ru.lingstra.communications.presentation.base.BaseMviPresenter
+import ru.lingstra.communications.system.NavigationManager
 import ru.lingstra.communications.system.SystemMessage
 import javax.inject.Inject
 
 class AppPresenter @Inject constructor(
-    private val systemMessage: SystemMessage
+    private val systemMessage: SystemMessage,
+    private val navigationManager: NavigationManager
 ) : BaseMviPresenter<AppView, AppViewState>() {
     override fun bindIntents() {
         val initialState = AppViewState()
@@ -22,11 +24,21 @@ class AppPresenter @Inject constructor(
         )
     }
 
-    private val reducer = BiFunction { oldState: AppViewState, partial: AppPartialState ->
-        when (partial) {
-            is AppPartialState.Progress -> oldState.copy(progress = partial.value, render = AppViewState.Render.PROGRESS)
-            is AppPartialState.Toast -> oldState.copy(toast = partial.message, render = AppViewState.Render.TOAST)
-            else -> oldState.copy(render = AppViewState.Render.NONE)
+    private val reducer = BiFunction { oldState: AppViewState, it: AppPartialState ->
+        when (it) {
+            is AppPartialState.Progress -> oldState.copy(
+                progress = it.value,
+                render = AppViewState.Render.PROGRESS
+            )
+            is AppPartialState.Toast -> oldState.copy(
+                toast = it.message,
+                render = AppViewState.Render.TOAST
+            )
+            is AppPartialState.Navigation -> oldState.copy(
+                navigationAction = it.action,
+                render = AppViewState.Render.NAVIGATION
+            )
+            is AppPartialState.Refresh -> oldState.copy(render = AppViewState.Render.NONE)
         }
     }
 
@@ -43,7 +55,10 @@ class AppPresenter @Inject constructor(
         val refresh = intent(AppView::refresh)
             .map { AppPartialState.Refresh }
 
-        val actions = listOf(refresh, toast, progress)
+        val navigation = navigationManager.actions
+            .map { AppPartialState.Navigation(it) }
+
+        val actions = listOf(refresh, toast, progress, navigation)
 
         return Observable.merge(actions).share()
     }

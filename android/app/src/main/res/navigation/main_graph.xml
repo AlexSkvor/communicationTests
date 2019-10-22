@@ -12,7 +12,7 @@
             tools:layout="@layout/fragment_tests_list"/>
 
     <fragment
-            android:id="@+id/filtersFragment"
+            android:id="@+id/theoryFragment"
             android:name="ru.lingstra.communications.ui.token.TokenFragment"
             android:label="FiltersFragment"
             tools:layout="@layout/fragment_token"/>

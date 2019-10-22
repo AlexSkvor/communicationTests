@@ -3,10 +3,10 @@
     <item android:id="@+id/testsListFragment"
           android:icon="@drawable/icon_search"
           android:enabled="true"
-          android:title="Поиск"/>
+          android:title="@string/testsList"/>
 
-    <item android:id="@+id/filtersFragment"
+    <item android:id="@+id/theoryFragment"
           android:icon="@drawable/icon_filter"
           android:enabled="true"
-          android:title="@string/token"/>
+          android:title="@string/theory"/>
 </menu>
