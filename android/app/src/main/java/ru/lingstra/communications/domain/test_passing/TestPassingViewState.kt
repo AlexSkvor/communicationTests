@@ -1,4 +1,8 @@
 package ru.lingstra.communications.domain.test_passing
 
-class TestPassingViewState {
+import ru.lingstra.communications.domain.models.Test
+
+data class TestPassingViewState(
+    val test: Test
+) {
 }

@@ -16,16 +16,18 @@ import timber.log.Timber
 import toothpick.Scope
 import toothpick.Toothpick
 
-abstract class MviBaseFragment <V: MvpView,P : MviPresenter<V, *>> : MviFragment<V, P>(), DisposablesProvider by AppDisposables() {
+abstract class MviBaseFragment<V : MvpView, P : MviPresenter<V, *>> : MviFragment<V, P>(),
+    DisposablesProvider by AppDisposables() {
     abstract val layoutRes: Int
         @LayoutRes get
 
-    private companion object{
+    private companion object {
         const val STATE_SCOPE_NAME = "state_scope_name"
     }
 
     protected val parentScopeName: String by lazy {
-        (parentFragment?.parentFragment as? MviBaseFragment<*,*>)?.fragmentScopeName ?: DI.APP_SCOPE
+        (parentFragment?.parentFragment as? MviBaseFragment<*, *>)?.fragmentScopeName
+            ?: DI.APP_SCOPE
     }
 
     private lateinit var fragmentScopeName: String
@@ -99,7 +101,11 @@ abstract class MviBaseFragment <V: MvpView,P : MviPresenter<V, *>> : MviFragment
         outState.putString(STATE_SCOPE_NAME, fragmentScopeName)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(layoutRes, container, false)
     }
 

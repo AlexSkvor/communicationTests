@@ -9,6 +9,7 @@ import ru.lingstra.communications.presentation.token.TokenView
 import ru.lingstra.communications.ui.base.MviBaseFragment
 
 class TokenFragment : MviBaseFragment<TokenView, TokenPresenter>(), TokenView {
+
     override fun createPresenter(): TokenPresenter =
         scope.getInstance(TokenPresenter::class.java)
 

@@ -10,6 +10,8 @@ import ru.lingstra.communications.presentation.base.BaseMviPresenter
 import ru.lingstra.communications.system.NavigationManager
 import ru.lingstra.communications.system.ResourceManager
 import ru.lingstra.communications.system.SystemMessage
+import ru.lingstra.communications.ui.test_passing.ARG_TAG
+import ru.lingstra.communications.ui.test_passing.TestPassingFragment
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -45,7 +47,10 @@ class TestsListPresenter @Inject constructor(
                     systemMessage.send(resourceManager.getString(R.string.errorHappened))
                     Timber.e(it.error)
                 }
-                is TestsListPartialState.TestPressed -> navigationManager.navigate(R.id.testPassingFragment)//systemMessage.send(it.test.name)
+                is TestsListPartialState.TestPressed -> {
+                    navigationManager.arguments[ARG_TAG] = it.test
+                    navigationManager.navigate(R.id.testPassingFragment)
+                }
                 is TestsListPartialState.Loading -> systemMessage.showProgress(it.loading)
             }
         }.bind()

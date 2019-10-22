@@ -6,6 +6,7 @@ import ru.lingstra.communications.presentation.test_passing.TestPassingPresenter
 import ru.lingstra.communications.presentation.test_passing.TestPassingView
 import ru.lingstra.communications.ui.base.MviBaseFragment
 
+const val ARG_TAG: String = "TestPassingFragment"
 class TestPassingFragment : MviBaseFragment<TestPassingView, TestPassingPresenter>(),
     TestPassingView {
 

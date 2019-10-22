@@ -5,6 +5,9 @@ import com.jakewharton.rxrelay2.PublishRelay
 import io.reactivex.Observable
 
 class NavigationManager {
+
+    val arguments: MutableMap<String, Any> = mutableMapOf()
+
     private val notifierRelay = PublishRelay.create<NavigationAction>()
     val actions: Observable<NavigationAction> = notifierRelay.hide()
 
