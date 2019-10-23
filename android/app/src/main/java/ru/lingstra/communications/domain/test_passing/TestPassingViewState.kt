@@ -4,6 +4,6 @@ import ru.lingstra.communications.domain.models.Test
 
 data class TestPassingViewState(
     val test: Test,
-    val answers: Map<Test.Question, Test.Answer> = mapOf()
+    val answers: Map<String, Test.Question> = mapOf()
 ) {
 }

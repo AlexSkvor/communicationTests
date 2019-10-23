@@ -17,7 +17,9 @@ data class QuestionWithAnswers(
     operator fun component2(): List<AnswerEntity> = answers
 
     fun toDomain(): Test.Question =
-        Test.Question(text = question.text,
+        Test.Question(
+            id = question.id,
+            text = question.text,
             answers = answers.map { Test.Answer(it.id, it.text, it.mark) })
 }
 

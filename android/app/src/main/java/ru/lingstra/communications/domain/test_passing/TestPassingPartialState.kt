@@ -4,7 +4,7 @@ import ru.lingstra.communications.domain.models.Test
 
 sealed class TestPassingPartialState(private val logMessage: String) {
 
-    data class Answer(val answer: Pair<Test.Question, Test.Answer>) :
+    data class Answer(val answer: Pair<String, Test.Question>) :
         TestPassingPartialState("Answer $answer")
 
     object ShowResult : TestPassingPartialState("ShowResult")

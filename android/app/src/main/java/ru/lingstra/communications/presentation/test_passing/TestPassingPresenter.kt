@@ -35,7 +35,7 @@ class TestPassingPresenter @Inject constructor(
 
     private fun getActions(): Observable<TestPassingPartialState> {
         val answerAction = intent(TestPassingView::answerChosenIntent)
-            .map { TestPassingPartialState.Answer(it to it.answers.first()) }
+            .map { TestPassingPartialState.Answer(it.id!! to it) }
 
         val completeAction = intent(TestPassingView::completeIntent)
             .map { TestPassingPartialState.ShowResult }

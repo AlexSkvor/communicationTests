@@ -22,7 +22,7 @@ data class Test(
         val id: String? = null,
         val text: String,
         val mark: Int,
-        val chosen: Boolean = false
+        var chosen: Boolean = false
     )
 
     data class Result(
