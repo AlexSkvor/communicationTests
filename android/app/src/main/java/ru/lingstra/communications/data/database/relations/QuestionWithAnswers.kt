@@ -27,14 +27,14 @@ fun List<Test.Question>.toData(testId: String): List<QuestionWithAnswers> =
     map {
         QuestionWithAnswers(
             question = QuestionEntity(
-                id = if (it.id.isEmpty()) uuid else it.id,
+                id = if (it.id.isNullOrEmpty()) uuid else it.id,
                 testId = testId,
                 text = it.text
             )
         ).apply {
             answers = it.answers.map { dom ->
                 AnswerEntity(
-                    id = if (dom.id.isEmpty()) uuid else dom.id,
+                    id = if (dom.id.isNullOrEmpty()) uuid else dom.id,
                     questionId = this.question.id,
                     text = dom.text,
                     mark = dom.mark
