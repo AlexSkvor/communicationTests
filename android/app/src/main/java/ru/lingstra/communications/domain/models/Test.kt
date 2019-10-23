@@ -13,16 +13,19 @@ data class Test(
     val results: List<Result>
 ) {
     data class Question(
+        val id: String = "",
         val text: String,
         val answers: List<Answer>
     )
 
     data class Answer(
+        val id: String = "",
         val text: String,
         val mark: Int
     )
 
     data class Result(
+        val id: String = "",
         val minMark: Int,
         val maxMark: Int,
         val text: String
@@ -43,7 +46,7 @@ data class Test(
         ).apply {
             results = r.map {
                 ResultReferenceEntity(
-                    id = uuid,
+                    id = if (it.id.isEmpty()) uuid else it.id,
                     testId = innerTest.id,
                     minMark = it.minMark,
                     maxMark = it.maxMark,

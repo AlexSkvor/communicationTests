@@ -18,7 +18,7 @@ data class QuestionWithAnswers(
 
     fun toDomain(): Test.Question =
         Test.Question(text = question.text,
-            answers = answers.map { Test.Answer(it.text, it.mark) })
+            answers = answers.map { Test.Answer(it.id, it.text, it.mark) })
 }
 
 fun List<QuestionWithAnswers>.toDomain(): List<Test.Question> = map { it.toDomain() }
@@ -26,11 +26,15 @@ fun List<QuestionWithAnswers>.toDomain(): List<Test.Question> = map { it.toDomai
 fun List<Test.Question>.toData(testId: String): List<QuestionWithAnswers> =
     map {
         QuestionWithAnswers(
-            question = QuestionEntity(id = uuid, testId = testId, text = it.text)
+            question = QuestionEntity(
+                id = if (it.id.isEmpty()) uuid else it.id,
+                testId = testId,
+                text = it.text
+            )
         ).apply {
             answers = it.answers.map { dom ->
                 AnswerEntity(
-                    id = uuid,
+                    id = if (dom.id.isEmpty()) uuid else dom.id,
                     questionId = this.question.id,
                     text = dom.text,
                     mark = dom.mark

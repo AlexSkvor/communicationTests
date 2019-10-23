@@ -28,6 +28,7 @@ data class Test(
         questions = questions.toDomain(),
         results = results.map {
             Test.Result(
+                id = it.id,
                 minMark = it.minMark,
                 maxMark = it.maxMark,
                 text = it.resultDescription
