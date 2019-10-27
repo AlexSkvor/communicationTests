@@ -8,7 +8,6 @@ import com.jakewharton.rxbinding2.view.clicks
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_test_passing.*
 import ru.lingstra.communications.R
-import ru.lingstra.communications.alsoPrintDebug
 import ru.lingstra.communications.domain.models.Test
 import ru.lingstra.communications.domain.test_passing.TestPassingViewState
 import ru.lingstra.communications.presentation.test_passing.TestPassingPresenter

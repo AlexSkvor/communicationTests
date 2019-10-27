@@ -1,5 +1,6 @@
 package ru.lingstra.communications.data.prefs
 
 interface AppPrefs {
-    var token: String
+    var userId: String
+    var onlyFavourites: Boolean
 }
