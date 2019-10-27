@@ -12,13 +12,16 @@ import com.jakewharton.rxrelay2.PublishRelay
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_tests_list.*
 import ru.lingstra.communications.R
+import ru.lingstra.communications.data.prefs.AppPrefs
 import ru.lingstra.communications.domain.models.Test
 import ru.lingstra.communications.domain.test_list.TestsListViewState
 import ru.lingstra.communications.presentation.list.TestsListPresenter
 import ru.lingstra.communications.presentation.list.TestsListView
+import ru.lingstra.communications.system.NavigationManager
 import ru.lingstra.communications.ui.base.MviBaseFragment
 import ru.lingstra.communications.ui.utils.delegate.CompositeDelegateAdapter
 import ru.lingstra.communications.ui.utils.delegate.pressedItems
+import javax.inject.Inject
 
 class TestsListFragment : MviBaseFragment<TestsListView, TestsListPresenter>(), TestsListView {
 
@@ -61,8 +64,22 @@ class TestsListFragment : MviBaseFragment<TestsListView, TestsListPresenter>(), 
         inflater.inflate(R.menu.menu_syncronize, menu)
     }
 
+    /*@Inject
+    lateinit var navigationManager: NavigationManager
+
+    @Inject
+    lateinit var prefs: AppPrefs*/
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
         when (item.itemId) {
+            R.id.favourites -> {
+                //prefs.onlyFavourites = !prefs.onlyFavourites
+                true
+            }
+            R.id.changeUser -> {
+                //navigationManager.relogin()
+                true
+            }
             R.id.sync -> {
                 syncRelay.accept(Unit)
                 true

@@ -11,10 +11,11 @@ class NavigationManager {
     private val notifierRelay = PublishRelay.create<NavigationAction>()
     val actions: Observable<NavigationAction> = notifierRelay.hide()
 
-    fun acceptAction(action: NavigationAction) = notifierRelay.accept(action)
+    private fun acceptAction(action: NavigationAction) = notifierRelay.accept(action)
 
     fun navigate(screenId: Int) = acceptAction(NavigationAction.Screen(screenId))
     fun back() = acceptAction(NavigationAction.Back)
+    //fun relogin() = acceptAction(NavigationAction.Screen(reloginId))
 
     sealed class NavigationAction {
         data class Screen(
