@@ -19,5 +19,6 @@
     <string name="testsList">Тесты</string>
     <string name="completeTest">Завершить тест</string>
     <string name="answers">Ответы:</string>
+    <string name="newUserNameHint">Имя нового пользователя</string>
 
 </resources>

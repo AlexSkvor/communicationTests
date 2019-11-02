@@ -11,4 +11,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.BlueTextInputLayout">
+        <item name="android:textColor">@color/blueTextColor</item>
+        <item name="android:textSize">@dimen/auth_font_small</item>
+    </style>
+
+    <style name="AppTheme.DefaultEditText">
+        <item name="android:textSize">@dimen/textSizeBig</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
 </resources>

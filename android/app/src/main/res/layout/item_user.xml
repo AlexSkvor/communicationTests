@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/userItemLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <RadioButton
+            android:id="@+id/radioButtonUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical" />
+
+    <TextView
+            android:id="@+id/userName"
+            android:textSize="@dimen/textSizeBig"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/marginNormal"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginNormal"
+            android:layout_marginBottom="@dimen/marginNormal"
+            android:layout_weight="1"
+            tools:text="Имя пользователя" />
+
+    <ImageView
+            android:id="@+id/deletePointImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="@dimen/marginNormal"
+            android:contentDescription="@string/stub"
+            android:src="@drawable/ic_clear_black_24dp" />
+
+</LinearLayout>

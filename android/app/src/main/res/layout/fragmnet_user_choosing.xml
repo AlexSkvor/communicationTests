@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/users_choosing_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/questionsRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/marginNormal"
+            android:layout_marginTop="@dimen/marginBig"
+            android:layout_marginEnd="@dimen/marginNormal"
+            android:layout_marginBottom="@dimen/marginNormal"
+            app:layout_constraintBottom_toTopOf="@id/inputCommentaryPointCreationIO"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_user" />
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputCommentaryPointCreationIO"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginNormal"
+            android:layout_marginTop="@dimen/marginBig"
+            android:layout_marginEnd="@dimen/marginNormal"
+            android:layout_marginBottom="@dimen/marginBig"
+            android:hint="@string/newUserNameHint"
+            android:visibility="visible"
+            app:hintTextAppearance="@style/AppTheme.BlueTextInputLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/xCoordinateIncreaseIO"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/commentPointCreationIO"
+                style="@style/AppTheme.DefaultEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:imeOptions="actionNext"
+                android:inputType="textMultiLine"
+                android:maxLength="1024"
+                tools:visibility="visible" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/xCoordinateIncreaseIO"
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/marginBig"
+            android:layout_marginEnd="@dimen/marginBig"
+            android:layout_marginBottom="@dimen/marginBig"
+            android:layout_weight="3"
+            android:src="@drawable/ic_add_white_24dp"
+            app:backgroundTint="@color/colorPrimary"
+            app:fabCustomSize="24dp"
+            app:layout_constraintBottom_toBottomOf="@id/inputCommentaryPointCreationIO"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/inputCommentaryPointCreationIO" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
