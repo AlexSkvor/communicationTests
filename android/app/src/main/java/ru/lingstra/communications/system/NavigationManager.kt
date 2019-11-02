@@ -3,6 +3,7 @@ package ru.lingstra.communications.system
 import androidx.annotation.IdRes
 import com.jakewharton.rxrelay2.PublishRelay
 import io.reactivex.Observable
+import ru.lingstra.communications.R
 
 class NavigationManager {
 
@@ -15,7 +16,7 @@ class NavigationManager {
 
     fun navigate(screenId: Int) = acceptAction(NavigationAction.Screen(screenId))
     fun back() = acceptAction(NavigationAction.Back)
-    //fun relogin() = acceptAction(NavigationAction.Screen(reloginId))
+    fun relogin() = acceptAction(NavigationAction.Screen(R.id.userChoosingFragment))
 
     sealed class NavigationAction {
         data class Screen(

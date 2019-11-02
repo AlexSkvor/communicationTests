@@ -64,20 +64,20 @@ class TestsListFragment : MviBaseFragment<TestsListView, TestsListPresenter>(), 
         inflater.inflate(R.menu.menu_syncronize, menu)
     }
 
-    /*@Inject
+    @Inject
     lateinit var navigationManager: NavigationManager
 
     @Inject
-    lateinit var prefs: AppPrefs*/
+    lateinit var prefs: AppPrefs
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
         when (item.itemId) {
             R.id.favourites -> {
-                //prefs.onlyFavourites = !prefs.onlyFavourites
+                prefs.onlyFavourites = !prefs.onlyFavourites
                 true
             }
             R.id.changeUser -> {
-                //navigationManager.relogin()
+                navigationManager.relogin()
                 true
             }
             R.id.sync -> {

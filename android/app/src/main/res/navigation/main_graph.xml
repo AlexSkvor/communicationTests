@@ -12,6 +12,12 @@
             tools:layout="@layout/fragment_tests_list" />
 
     <fragment
+            android:id="@+id/userChoosingFragment"
+            android:name="ru.lingstra.communications.ui.user.UserChoosingFragment"
+            android:label="UserChoosingFragment"
+            tools:layout="@layout/fragment_user_choosing" />
+
+    <fragment
             android:id="@+id/testPassingFragment"
             android:name="ru.lingstra.communications.ui.test_passing.TestPassingFragment"
             android:label="TestPassingFragment"

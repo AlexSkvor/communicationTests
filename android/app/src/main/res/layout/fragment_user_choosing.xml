@@ -7,21 +7,21 @@
         android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/questionsRecycler"
+            android:id="@+id/usersRecycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/marginNormal"
             android:layout_marginTop="@dimen/marginBig"
             android:layout_marginEnd="@dimen/marginNormal"
             android:layout_marginBottom="@dimen/marginNormal"
-            app:layout_constraintBottom_toTopOf="@id/inputCommentaryPointCreationIO"
+            app:layout_constraintBottom_toTopOf="@id/inputNewUserName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_user" />
 
     <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputCommentaryPointCreationIO"
+            android:id="@+id/inputNewUserName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/marginNormal"
@@ -32,12 +32,12 @@
             android:visibility="visible"
             app:hintTextAppearance="@style/AppTheme.BlueTextInputLayout"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/xCoordinateIncreaseIO"
+            app:layout_constraintEnd_toStartOf="@id/addUserButton"
             app:layout_constraintStart_toStartOf="parent"
             tools:visibility="visible">
 
         <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/commentPointCreationIO"
+                android:id="@+id/newUserNameEdit"
                 style="@style/AppTheme.DefaultEditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -49,7 +49,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/xCoordinateIncreaseIO"
+            android:id="@+id/addUserButton"
             android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_gravity="bottom"
@@ -60,8 +60,8 @@
             android:src="@drawable/ic_add_white_24dp"
             app:backgroundTint="@color/colorPrimary"
             app:fabCustomSize="24dp"
-            app:layout_constraintBottom_toBottomOf="@id/inputCommentaryPointCreationIO"
+            app:layout_constraintBottom_toBottomOf="@id/inputNewUserName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/inputCommentaryPointCreationIO" />
+            app:layout_constraintTop_toTopOf="@id/inputNewUserName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
