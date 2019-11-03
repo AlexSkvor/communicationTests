@@ -10,8 +10,8 @@ class ResultsInteractor @Inject constructor(
     private val repository: ResultsRepository
 ) {
 
-    fun getResults(user: UserEntity): Observable<ResultsPartialState> =
-        repository.getResults(user)
+    fun getResults(): Observable<ResultsPartialState> =
+        repository.getResults()
             .map { ResultsPartialState.ResultsList(it).partial() }
             .startWith(ResultsPartialState.Loading(true))
             .onErrorReturn { ResultsPartialState.Error(it) }

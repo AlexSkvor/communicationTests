@@ -11,7 +11,6 @@ import ru.lingstra.communications.presentation.base.BaseMviPresenter
 import ru.lingstra.communications.system.NavigationManager
 import ru.lingstra.communications.system.ResourceManager
 import ru.lingstra.communications.system.SystemMessage
-import ru.lingstra.communications.ui.test_passing.ARG_TAG_TEST_PASSING_FRAGMENT
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -49,8 +48,8 @@ class ResultPresenter @Inject constructor(
                     Timber.e(it.error)
                 }
                 is ResultsPartialState.ResultPressed -> {
-                    navigationManager.arguments[ARG_TAG_TEST_PASSING_FRAGMENT] = it.result //TODO tag is wrong!
-                    navigationManager.navigate(R.id.testPassingFragment) //TODO screen is wrong!
+                    systemMessage.send("Детальный просмотр не реализован")
+                    //TODO detailed screen
                 }
                 is ResultsPartialState.Loading -> systemMessage.showProgress(it.loading)
             }
@@ -61,15 +60,19 @@ class ResultPresenter @Inject constructor(
         val loadAction = intent(ResultView::initialLoad)
             .doOnNext { if (prefs.user.isEmpty()) systemMessage.send(resourceManager.getString(R.string.chooseUserBefore)) }
             .filter { prefs.user.isNotEmpty() }
-            .switchMap { interactor.getResults(prefs.user) }
+            .switchMap { interactor.getResults() }
 
         val resultPressedAction = intent(ResultView::resultClicked)
             .map { ResultsPartialState.ResultPressed(it) }
 
-        val userChangedAction = prefs.userChanges()
-            .switchMap { interactor.getResults(it) }
+        val favouriteSettingAction = prefs.onlyFavouritesFlagChanges()
+            .switchMap { interactor.getResults() }
 
-        val list = listOf(loadAction, userChangedAction, resultPressedAction)
+        val userChangedAction = prefs.userChanges()
+            .switchMap { interactor.getResults() }
+
+        val list =
+            listOf(loadAction, userChangedAction, resultPressedAction, favouriteSettingAction)
         return Observable.merge(list)
     }
 }

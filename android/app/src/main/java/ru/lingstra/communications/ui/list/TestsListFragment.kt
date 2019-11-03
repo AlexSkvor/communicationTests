@@ -2,27 +2,20 @@ package ru.lingstra.communications.ui.list
 
 import android.content.Context
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxrelay2.BehaviorRelay
-import com.jakewharton.rxrelay2.PublishRelay
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_tests_list.*
 import ru.lingstra.communications.R
-import ru.lingstra.communications.data.prefs.AppPrefs
 import ru.lingstra.communications.domain.models.Test
 import ru.lingstra.communications.domain.test_list.TestsListViewState
 import ru.lingstra.communications.presentation.list.TestsListPresenter
 import ru.lingstra.communications.presentation.list.TestsListView
-import ru.lingstra.communications.system.NavigationManager
 import ru.lingstra.communications.ui.base.MviBaseFragment
 import ru.lingstra.communications.ui.utils.delegate.CompositeDelegateAdapter
 import ru.lingstra.communications.ui.utils.delegate.editItems
 import ru.lingstra.communications.ui.utils.delegate.pressedItems
-import javax.inject.Inject
 
 class TestsListFragment : MviBaseFragment<TestsListView, TestsListPresenter>(), TestsListView {
 
@@ -54,7 +47,6 @@ class TestsListFragment : MviBaseFragment<TestsListView, TestsListPresenter>(), 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
         testsRecycler.layoutManager = LinearLayoutManager(requireContext())
         testsRecycler.adapter = testsAdapter
         loadListRelay.accept(Unit)

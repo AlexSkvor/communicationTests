@@ -4,13 +4,11 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.functions.BiFunction
 import org.joda.time.format.DateTimeFormat
-import ru.lingstra.communications.data.database.dao.AnswerDao
-import ru.lingstra.communications.data.database.dao.FactAnswerDao
-import ru.lingstra.communications.data.database.dao.TestDao
-import ru.lingstra.communications.data.database.dao.TestPassingDao
+import ru.lingstra.communications.data.database.dao.*
 import ru.lingstra.communications.data.database.entities.AnswerEntity
 import ru.lingstra.communications.data.database.entities.TestPassingEntity
 import ru.lingstra.communications.data.database.entities.UserEntity
+import ru.lingstra.communications.data.prefs.AppPrefs
 import ru.lingstra.communications.domain.models.Test
 import ru.lingstra.communications.domain.result.FactResult
 import ru.lingstra.communications.flattenMap
@@ -23,20 +21,34 @@ class ResultsRepository @Inject constructor(
     private val testDao: TestDao,
     private val schedulers: SchedulersProvider,
     private val factAnswerDao: FactAnswerDao,
-    private val answerDao: AnswerDao
+    private val answerDao: AnswerDao,
+    private val favouriteDao: FavouriteDao,
+    private val prefs: AppPrefs
 ) {
 
-    fun getResults(user: UserEntity): Observable<List<FactResult>> =
-        testPassingDao.getTestPassingsForUser(user.id)
+    fun getResults(): Observable<List<FactResult>> =
+        testPassingDao.getTestPassingsForUser(prefs.user.id)
             .flattenAsFlowable { it }
-            .flatMapSingle { convertTestPassingToResult(it, user) }
+            .flatMapSingle { convertTestPassingToResult(it, prefs.user) }
             .toList()
+            .zipWith(
+                favouriteList(),
+                BiFunction<List<FactResult>, List<String>, List<FactResult>> { results, favourites ->
+                    results.map {
+                        if (it.test.id in favourites) it.copy(test = it.test.copy(isFavourite = true))
+                        else it
+                    }
+                })
+            .map { it.filter { result -> !prefs.onlyFavourites || result.test.isFavourite } }
             .toObservable()
             .map { it.sortedByDescending { result -> result.time } }
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
 
     private val formatter = DateTimeFormat.forPattern(DATE_MASK)
+
+    private fun favouriteList(): Single<List<String>> =
+        favouriteDao.getUsersFavouritesList(prefs.user.id)
 
     private fun convertTestPassingToResult(
         testPassingObject: TestPassingEntity,

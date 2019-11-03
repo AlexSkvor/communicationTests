@@ -17,8 +17,11 @@ class ResultsAdapter : DelegateAdapter<FactResult>() {
         testName.text = item.test.name
         resultText.text = item.resultText
         passingDate.text = resources.getString(R.string.passingDate, item.time.toString("dd.MM.YYY HH:mm"))
+
+        if (item.test.isFavourite) favouriteImage.setImageResource(R.drawable.ic_favourite_black_24dp)
+        else favouriteImage.setImageResource(R.drawable.ic_not_favourite_black_24dp)
+
         setOnClickListener { actionsRelay.accept(UserAction.ItemPressed(item)) }
-        favouriteImage.setOnClickListener { actionsRelay.accept(UserAction.ItemEdit(item)) }
     }
 
     override fun getLayoutId(): Int = R.layout.item_fact_test_result
