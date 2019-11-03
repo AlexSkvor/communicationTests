@@ -22,6 +22,7 @@
     <string name="answers">Ответы:</string>
     <string name="newUserNameHint">Имя нового пользователя</string>
     <string name="chooseUserBefore">Сначала выберете пользователя!</string>
+    <string name="passingDate">Пройден: %s</string>
 
     <string name="userExistsError">Пользователь с именем %s уже существует!</string>
 

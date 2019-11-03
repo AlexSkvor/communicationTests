@@ -9,4 +9,12 @@ data class FactResult(
     val user: UserEntity,
     val test: Test
 ) {
+
+    val resultText: String by lazy {
+        val mark = test.questions.map { it.answers.first() }.map { it.mark }.sum()
+        test.results.forEach {
+            if (mark in it.minMark..it.maxMark) return@lazy it.text
+        }
+        return@lazy ""
+    }
 }
