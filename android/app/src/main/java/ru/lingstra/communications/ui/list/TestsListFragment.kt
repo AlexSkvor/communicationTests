@@ -20,6 +20,7 @@ import ru.lingstra.communications.presentation.list.TestsListView
 import ru.lingstra.communications.system.NavigationManager
 import ru.lingstra.communications.ui.base.MviBaseFragment
 import ru.lingstra.communications.ui.utils.delegate.CompositeDelegateAdapter
+import ru.lingstra.communications.ui.utils.delegate.editItems
 import ru.lingstra.communications.ui.utils.delegate.pressedItems
 import javax.inject.Inject
 
@@ -31,9 +32,6 @@ class TestsListFragment : MviBaseFragment<TestsListView, TestsListPresenter>(), 
     override fun createPresenter(): TestsListPresenter =
         scope.getInstance(TestsListPresenter::class.java)
 
-    private val syncRelay = PublishRelay.create<Unit>()
-    override fun syncIntent(): Observable<Unit> = syncRelay.hide()
-
     private val loadListRelay = BehaviorRelay.create<Unit>()
     override fun loadListIntent(): Observable<Unit> = loadListRelay.hide()
 
@@ -42,6 +40,8 @@ class TestsListFragment : MviBaseFragment<TestsListView, TestsListPresenter>(), 
     override fun render(state: TestsListViewState) {
         testsAdapter.replaceData(state.tests)
     }
+
+    override fun favouriteClicked(): Observable<Test> = testsAdapter.actions.editItems()
 
     override fun testClicked(): Observable<Test> = testsAdapter.actions.pressedItems()
 
@@ -59,35 +59,4 @@ class TestsListFragment : MviBaseFragment<TestsListView, TestsListPresenter>(), 
         testsRecycler.adapter = testsAdapter
         loadListRelay.accept(Unit)
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_syncronize, menu)
-    }
-
-    @Inject
-    lateinit var navigationManager: NavigationManager
-
-    @Inject
-    lateinit var prefs: AppPrefs
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean =
-        when (item.itemId) {
-            R.id.favourites -> {
-                prefs.onlyFavourites = !prefs.onlyFavourites
-                true
-            }
-            R.id.changeUser -> {
-                navigationManager.relogin()
-                true
-            }
-            R.id.sync -> {
-                syncRelay.accept(Unit)
-                true
-            }
-            R.id.exitUser -> {
-                activity?.finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
 }

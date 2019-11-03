@@ -17,7 +17,11 @@ class TestsListAdapter : DelegateAdapter<Test>() {
         with(holder.itemView) {
             testName.text = resources.getString(R.string.testName, item.name)
             questionsCount.text = resources.getString(R.string.questionsNumber, item.questions.size)
+            if (item.isFavourite) favouriteImage.setImageResource(R.drawable.ic_favourite_black_24dp)
+            else favouriteImage.setImageResource(R.drawable.ic_not_favourite_black_24dp)
+
             setOnClickListener { actionsRelay.accept(UserAction.ItemPressed(item)) }
+            favouriteImage.setOnClickListener { actionsRelay.accept(UserAction.ItemEdit(item)) }
         }
 
     override fun getLayoutId(): Int = R.layout.item_test

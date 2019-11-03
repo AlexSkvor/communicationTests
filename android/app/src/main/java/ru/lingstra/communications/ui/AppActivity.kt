@@ -1,6 +1,8 @@
 package ru.lingstra.communications.ui
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.hannesdorfmann.mosby3.mvi.MviActivity
@@ -17,6 +19,7 @@ import ru.lingstra.communications.system.NavigationManager
 import ru.lingstra.communications.toothpick.DI
 import ru.lingstra.communications.ui.base.ProgressDialogFragment
 import toothpick.Toothpick
+import javax.inject.Inject
 
 class AppActivity : MviActivity<AppView, AppPresenter>(), AppView {
 
@@ -32,6 +35,15 @@ class AppActivity : MviActivity<AppView, AppPresenter>(), AppView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_app)
     }
+
+    private val syncRelay = PublishRelay.create<Unit>()
+    override fun syncIntent(): Observable<Unit> = syncRelay.hide()
+
+    private val favouritesRelay = PublishRelay.create<Unit>()
+    override fun onlyFavourites(): Observable<Unit> = favouritesRelay.hide()
+
+    private val changeUserRelay = PublishRelay.create<Unit>()
+    override fun changeUser(): Observable<Unit> = changeUserRelay.hide()
 
     private val refreshIntent: PublishRelay<Unit> = PublishRelay.create()
     override fun refresh(): Observable<Unit> = refreshIntent.hide()
@@ -77,4 +89,22 @@ class AppActivity : MviActivity<AppView, AppPresenter>(), AppView {
     private fun showToast(message: String) {
         if (message.isNotBlank()) toast(message)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_syncronize, menu)
+        return true
+    }
+
+    @Inject
+    lateinit var navigationManager: NavigationManager
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = true.also {
+        when (item.itemId) {
+            R.id.favourites -> favouritesRelay.accept(Unit)
+            R.id.changeUser -> changeUserRelay.accept(Unit)
+            R.id.sync -> syncRelay.accept(Unit)
+            R.id.exitUser -> finish()
+        }
+    }
+
 }

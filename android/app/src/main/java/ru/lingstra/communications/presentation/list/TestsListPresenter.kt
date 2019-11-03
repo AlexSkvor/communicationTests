@@ -58,10 +58,14 @@ class TestsListPresenter @Inject constructor(
     }
 
     private fun getActions(): Observable<TestsListPartialState> {
-        val syncAction = intent(TestsListView::syncIntent)
-            .switchMap { interactor.synchronize().concatWith(interactor.getTestsList()) }
+
+        val favouriteAction = intent(TestsListView::favouriteClicked)
+            .switchMap { interactor.markFavourite(!it.isFavourite, it.id) }
 
         val loadListAction = intent(TestsListView::loadListIntent)
+            .switchMap { interactor.getTestsList() }
+
+        val favouriteSettingAction = prefs.onlyFavouritesFlagChanges()
             .switchMap { interactor.getTestsList() }
 
         val clickedAction = intent(TestsListView::testClicked)
@@ -69,7 +73,12 @@ class TestsListPresenter @Inject constructor(
             .filter { prefs.user.isNotEmpty() }
             .map { TestsListPartialState.TestPressed(it) }
 
-        val list = listOf(syncAction, loadListAction, clickedAction)
+        val list = listOf(
+            loadListAction,
+            clickedAction,
+            favouriteAction,
+            favouriteSettingAction
+        )
         return Observable.merge(list)
     }
 }

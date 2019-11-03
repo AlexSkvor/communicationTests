@@ -7,8 +7,8 @@ import ru.lingstra.communications.domain.test_list.TestsListViewState
 
 interface TestsListView : MvpView {
     fun loadListIntent(): Observable<Unit>
-    fun syncIntent(): Observable<Unit>
     fun testClicked(): Observable<Test>
+    fun favouriteClicked(): Observable<Test>
 
     fun render(state: TestsListViewState)
 }

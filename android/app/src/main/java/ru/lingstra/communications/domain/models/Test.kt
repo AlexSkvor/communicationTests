@@ -10,8 +10,10 @@ data class Test(
     val name: String,
     val description: String,
     val questions: List<Question>,
-    val results: List<Result>
+    val results: List<Result>,
+    val isFavourite: Boolean = false
 ) {
+
     data class Question(
         val id: String? = null,
         val text: String,

@@ -5,6 +5,7 @@ import androidx.room.ForeignKey
 
 @Entity(
     tableName = "favourites",
+    primaryKeys = ["userId", "testId"],
     foreignKeys = [
         ForeignKey(
             entity = UserEntity::class,
@@ -17,5 +18,4 @@ import androidx.room.ForeignKey
 data class FavouriteEntity(
     val userId: String,
     val testId: String
-) {
-}
+)
