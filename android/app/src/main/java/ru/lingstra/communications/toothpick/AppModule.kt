@@ -51,6 +51,8 @@ class AppModule(context: Context, serverPath: String) : Module() {
             .singletonInScope()
         bind(FactAnswerDao::class.java).toProvider(FactAnswerDaoProvider::class.java)
             .singletonInScope()
+        bind(FavouriteDao::class.java).toProvider(FavouriteDaoProvider::class.java)
+            .singletonInScope()
 
         val filesDir = context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)?.toString()
         bind(String::class.java).withName(DefaultFilesDir::class.java).toInstance(filesDir)
