@@ -16,7 +16,10 @@ class ResultsAdapter : DelegateAdapter<FactResult>() {
     override fun onBind(item: FactResult, holder: DelegateViewHolder) = with(holder.itemView) {
         testName.text = item.test.name
         resultText.text = item.resultText
-        passingDate.text = resources.getString(R.string.passingDate, item.time.toString("DD.MM.YYY HH:mm"))
+        passingDate.text = resources.getString(R.string.passingDate, item.time.toString("dd.MM.YYY HH:mm"))
+        setOnClickListener {
+            actionsRelay.accept(UserAction.ItemPressed(item))
+        }
     }
 
     override fun getLayoutId(): Int = R.layout.item_fact_test_result

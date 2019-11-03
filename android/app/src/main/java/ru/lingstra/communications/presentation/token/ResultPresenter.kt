@@ -63,10 +63,13 @@ class ResultPresenter @Inject constructor(
             .filter { prefs.user.isNotEmpty() }
             .switchMap { interactor.getResults(prefs.user) }
 
+        val resultPressedAction = intent(ResultView::resultClicked)
+            .map { ResultsPartialState.ResultPressed(it) }
+
         val userChangedAction = prefs.userChanges()
             .switchMap { interactor.getResults(it) }
 
-        val list = listOf(loadAction, userChangedAction)
+        val list = listOf(loadAction, userChangedAction, resultPressedAction)
         return Observable.merge(list)
     }
 }

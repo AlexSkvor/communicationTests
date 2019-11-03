@@ -8,5 +8,5 @@
     <item android:id="@+id/theoryFragment"
           android:icon="@drawable/icon_filter"
           android:enabled="true"
-          android:title="@string/theory"/>
+          android:title="@string/results"/>
 </menu>

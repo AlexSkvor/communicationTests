@@ -3,14 +3,18 @@ package ru.lingstra.communications.data.repository
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.functions.BiFunction
-import org.joda.time.DateTime
-import ru.lingstra.communications.data.database.dao.*
+import org.joda.time.format.DateTimeFormat
+import ru.lingstra.communications.data.database.dao.AnswerDao
+import ru.lingstra.communications.data.database.dao.FactAnswerDao
+import ru.lingstra.communications.data.database.dao.TestDao
+import ru.lingstra.communications.data.database.dao.TestPassingDao
 import ru.lingstra.communications.data.database.entities.AnswerEntity
 import ru.lingstra.communications.data.database.entities.TestPassingEntity
 import ru.lingstra.communications.data.database.entities.UserEntity
 import ru.lingstra.communications.domain.models.Test
 import ru.lingstra.communications.domain.result.FactResult
 import ru.lingstra.communications.flattenMap
+import ru.lingstra.communications.system.DATE_MASK
 import ru.lingstra.communications.system.schedulers.SchedulersProvider
 import javax.inject.Inject
 
@@ -28,8 +32,11 @@ class ResultsRepository @Inject constructor(
             .flatMapSingle { convertTestPassingToResult(it, user) }
             .toList()
             .toObservable()
+            .map { it.sortedByDescending { result -> result.time } }
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
+
+    private val formatter = DateTimeFormat.forPattern(DATE_MASK)
 
     private fun convertTestPassingToResult(
         testPassingObject: TestPassingEntity,
@@ -44,7 +51,7 @@ class ResultsRepository @Inject constructor(
             })
         .map {
             FactResult(
-                time = DateTime.parse(testPassingObject.date),
+                time = formatter.parseDateTime(testPassingObject.date),
                 user = user,
                 test = it
             )
