@@ -12,8 +12,7 @@ class TokenPresenter @Inject constructor(
     override fun bindIntents() {
         intent(TokenView::newToken)
             .subscribe {
-               prefs.userId = it
-                systemMessage.send(prefs.userId)
+
             }.bind()
     }
 }

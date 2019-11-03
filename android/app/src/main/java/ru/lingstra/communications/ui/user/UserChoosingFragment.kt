@@ -45,12 +45,12 @@ class UserChoosingFragment : MviBaseFragment<UserChoosingView, UserChoosingPrese
     override fun onAttach(context: Context) {
         super.onAttach(context)
         usersAdapter = CompositeDelegateAdapter.Companion.Builder<UserEntity>()
-            .add(UserAdapter { appPrefs.userId })
+            .add(UserAdapter { appPrefs.user.id })
             .build()
 
         usersAdapter.actions.pressedItems()
             .subscribe {
-                appPrefs.userId = it.id
+                appPrefs.user = it
                 usersAdapter.notifyDataSetChanged()
             }.bind()
     }

@@ -44,7 +44,7 @@ class TestPassingRepository @Inject constructor(
         Single.just(
             TestPassingEntity(
                 id = UUID.randomUUID().toString(),
-                userId = prefs.userId,
+                userId = prefs.user.id,
                 testId = testId,
                 date = DateTime.now().toString(DATE_MASK)
             )

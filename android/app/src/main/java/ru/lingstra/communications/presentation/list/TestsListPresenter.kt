@@ -3,6 +3,7 @@ package ru.lingstra.communications.presentation.list
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import ru.lingstra.communications.R
+import ru.lingstra.communications.data.prefs.AppPrefs
 import ru.lingstra.communications.domain.test_list.TestsListInteractor
 import ru.lingstra.communications.domain.test_list.TestsListPartialState
 import ru.lingstra.communications.domain.test_list.TestsListViewState
@@ -11,7 +12,6 @@ import ru.lingstra.communications.system.NavigationManager
 import ru.lingstra.communications.system.ResourceManager
 import ru.lingstra.communications.system.SystemMessage
 import ru.lingstra.communications.ui.test_passing.ARG_TAG
-import ru.lingstra.communications.ui.test_passing.TestPassingFragment
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -19,7 +19,8 @@ class TestsListPresenter @Inject constructor(
     private val resourceManager: ResourceManager,
     private val systemMessage: SystemMessage,
     private val navigationManager: NavigationManager,
-    private val interactor: TestsListInteractor
+    private val interactor: TestsListInteractor,
+    private val prefs: AppPrefs
 ) : BaseMviPresenter<TestsListView, TestsListViewState>() {
 
     override fun bindIntents() {
@@ -64,6 +65,8 @@ class TestsListPresenter @Inject constructor(
             .switchMap { interactor.getTestsList() }
 
         val clickedAction = intent(TestsListView::testClicked)
+            .doOnNext { if (prefs.user.isEmpty()) systemMessage.send(resourceManager.getString(R.string.chooseUserBefore)) }
+            .filter { prefs.user.isNotEmpty() }
             .map { TestsListPartialState.TestPressed(it) }
 
         val list = listOf(syncAction, loadListAction, clickedAction)

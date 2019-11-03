@@ -7,4 +7,11 @@ import androidx.room.PrimaryKey
 data class UserEntity(
     @PrimaryKey val id: String,
     val name: String
-)
+) {
+    companion object {
+        val empty = UserEntity("", "")
+    }
+
+    fun isEmpty() = this == empty
+    fun isNotEmpty() = this != empty
+}
