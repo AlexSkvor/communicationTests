@@ -18,7 +18,7 @@ class TestPassingPresenter @Inject constructor(
     private val navigationManager: NavigationManager,
     private val interactor: TestPassingInteractor
 ) : BaseMviPresenter<TestPassingView, TestPassingViewState>() {
-    //TODO скрывать кнопку завершить и показывать кнопку выйти после получения результата
+
     override fun bindIntents() {
         val actions = getActions().share()
         val test = navigationManager.arguments[ARG_TAG] as Test

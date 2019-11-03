@@ -1,4 +1,4 @@
-package ru.lingstra.communications.ui.token
+package ru.lingstra.communications.ui.results
 
 import com.jakewharton.rxbinding2.view.clicks
 import io.reactivex.Observable
@@ -8,7 +8,7 @@ import ru.lingstra.communications.presentation.token.TokenPresenter
 import ru.lingstra.communications.presentation.token.TokenView
 import ru.lingstra.communications.ui.base.MviBaseFragment
 
-class TokenFragment : MviBaseFragment<TokenView, TokenPresenter>(), TokenView {
+class ResultsFragment : MviBaseFragment<TokenView, TokenPresenter>(), TokenView {
 
     override fun createPresenter(): TokenPresenter =
         scope.getInstance(TokenPresenter::class.java)

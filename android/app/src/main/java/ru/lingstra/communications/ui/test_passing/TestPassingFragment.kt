@@ -36,12 +36,21 @@ class TestPassingFragment : MviBaseFragment<TestPassingView, TestPassingPresente
     override fun completeIntent(): Observable<Unit> = completeButton.clicks()
 
     override fun render(state: TestPassingViewState) {
-        titleTest.text = state.test.name
-        description.text = state.test.description
-        if (questionsAdapter.itemCount != state.test.questions.size) {
-            questionsAdapter.replaceData(state.test.questions)
+        if (state.result == null) {
+            titleTest.text = state.test.name
+            description.text = state.test.description
+            if (questionsAdapter.itemCount != state.test.questions.size) {
+                questionsAdapter.replaceData(state.test.questions)
+            }
+            completeButton.visible = (state.test.questions.size == state.answers.size)
+        } else {
+            questionsRecycler.visible = false
+            completeButton.visible = false
+            backButton.visible = true
+            backButton.setOnClickListener { requireActivity().onBackPressed() }
+            result.visible = true
+            result.text = state.result.text
         }
-        completeButton.visible = (state.test.questions.size == state.answers.size)
     }
 
     override fun onAttach(context: Context) {

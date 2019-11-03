@@ -45,6 +45,20 @@
             app:layout_constraintTop_toBottomOf="@id/description"
             tools:listitem="@layout/item_question" />
 
+    <TextView
+            android:id="@+id/result"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/marginNormal"
+            android:layout_marginTop="@dimen/marginBig"
+            android:layout_marginEnd="@dimen/marginNormal"
+            android:layout_marginBottom="@dimen/marginNormal"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/completeButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/description" />
+
     <Button
             android:id="@+id/completeButton"
             android:layout_width="0dp"
@@ -55,6 +69,23 @@
             android:layout_marginBottom="@dimen/marginNormal"
             android:background="@color/blueTextColor"
             android:text="@string/completeTest"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
+
+    <Button
+            android:id="@+id/backButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginSuperBig"
+            android:layout_marginTop="@dimen/marginNormal"
+            android:layout_marginEnd="@dimen/marginSuperBig"
+            android:layout_marginBottom="@dimen/marginNormal"
+            android:background="@color/blueTextColor"
+            android:text="@string/back"
             android:textColor="@color/white"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"

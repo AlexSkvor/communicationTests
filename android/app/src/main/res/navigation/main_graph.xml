@@ -25,7 +25,7 @@
 
     <fragment
             android:id="@+id/theoryFragment"
-            android:name="ru.lingstra.communications.ui.token.TokenFragment"
+            android:name="ru.lingstra.communications.ui.results.ResultsFragment"
             android:label="FiltersFragment"
             tools:layout="@layout/fragment_token" />
 

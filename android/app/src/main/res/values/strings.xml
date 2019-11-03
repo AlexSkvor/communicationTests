@@ -10,6 +10,7 @@
 
     <string name="start">Начать</string>
     <string name="exit_session">Выход</string>
+    <string name="back">Назад</string>
     <string name="user">Пользователь</string>
     <string name="favourite">Избранное</string>
     <string name="sync">Синхронизировать</string>
