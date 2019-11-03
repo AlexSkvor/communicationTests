@@ -9,7 +9,7 @@ import ru.lingstra.communications.domain.test_passing.TestPassingViewState
 import ru.lingstra.communications.presentation.base.BaseMviPresenter
 import ru.lingstra.communications.system.NavigationManager
 import ru.lingstra.communications.system.SystemMessage
-import ru.lingstra.communications.ui.test_passing.ARG_TAG
+import ru.lingstra.communications.ui.test_passing.ARG_TAG_TEST_PASSING_FRAGMENT
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -21,7 +21,7 @@ class TestPassingPresenter @Inject constructor(
 
     override fun bindIntents() {
         val actions = getActions().share()
-        val test = navigationManager.arguments[ARG_TAG] as Test
+        val test = navigationManager.arguments[ARG_TAG_TEST_PASSING_FRAGMENT] as Test
         test.questions.forEach {
             it.answers.forEach { ans -> ans.chosen = false }
         }

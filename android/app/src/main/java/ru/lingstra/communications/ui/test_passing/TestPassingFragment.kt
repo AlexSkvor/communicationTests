@@ -17,7 +17,7 @@ import ru.lingstra.communications.ui.utils.delegate.CompositeDelegateAdapter
 import ru.lingstra.communications.ui.utils.delegate.pressedItems
 import ru.lingstra.communications.visible
 
-const val ARG_TAG: String = "TestPassingFragment"
+const val ARG_TAG_TEST_PASSING_FRAGMENT: String = "TestPassingFragment"
 
 class TestPassingFragment : MviBaseFragment<TestPassingView, TestPassingPresenter>(),
     TestPassingView {

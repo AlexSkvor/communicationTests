@@ -1,23 +1,21 @@
 package ru.lingstra.communications.ui.results
 
-import com.jakewharton.rxbinding2.view.clicks
-import io.reactivex.Observable
-import kotlinx.android.synthetic.main.fragment_token.*
 import ru.lingstra.communications.R
-import ru.lingstra.communications.presentation.token.TokenPresenter
-import ru.lingstra.communications.presentation.token.TokenView
+import ru.lingstra.communications.domain.result.ResultsViewState
+import ru.lingstra.communications.presentation.token.ResultPresenter
+import ru.lingstra.communications.presentation.token.ResultView
 import ru.lingstra.communications.ui.base.MviBaseFragment
 
-class ResultsFragment : MviBaseFragment<TokenView, TokenPresenter>(), TokenView {
+class ResultsFragment : MviBaseFragment<ResultView, ResultPresenter>(), ResultView {
 
-    override fun createPresenter(): TokenPresenter =
-        scope.getInstance(TokenPresenter::class.java)
+    override fun createPresenter(): ResultPresenter =
+        scope.getInstance(ResultPresenter::class.java)
 
     override val layoutRes: Int
-        get() = R.layout.fragment_token
+        get() = R.layout.fragment_results_list
 
-    override fun newToken(): Observable<String> =
-        saveTokenButton.clicks()
-            .map { newTokenEdit.text.toString() }
-            .filter { it.isNotBlank() }
+    override fun render(state: ResultsViewState) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 }

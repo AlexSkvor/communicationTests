@@ -11,7 +11,7 @@ import ru.lingstra.communications.presentation.base.BaseMviPresenter
 import ru.lingstra.communications.system.NavigationManager
 import ru.lingstra.communications.system.ResourceManager
 import ru.lingstra.communications.system.SystemMessage
-import ru.lingstra.communications.ui.test_passing.ARG_TAG
+import ru.lingstra.communications.ui.test_passing.ARG_TAG_TEST_PASSING_FRAGMENT
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -49,7 +49,7 @@ class TestsListPresenter @Inject constructor(
                     Timber.e(it.error)
                 }
                 is TestsListPartialState.TestPressed -> {
-                    navigationManager.arguments[ARG_TAG] = it.test
+                    navigationManager.arguments[ARG_TAG_TEST_PASSING_FRAGMENT] = it.test
                     navigationManager.navigate(R.id.testPassingFragment)
                 }
                 is TestsListPartialState.Loading -> systemMessage.showProgress(it.loading)
