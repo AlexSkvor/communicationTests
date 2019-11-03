@@ -2,14 +2,19 @@ package ru.lingstra.communications.domain.result
 
 import io.reactivex.Observable
 import ru.lingstra.communications.data.database.entities.UserEntity
+import ru.lingstra.communications.data.repository.ResultsRepository
+import ru.lingstra.communications.endWith
 import javax.inject.Inject
 
 class ResultsInteractor @Inject constructor(
-
+    private val repository: ResultsRepository
 ) {
 
-    fun getResults(user: UserEntity): Observable<ResultsPartialState>{
-
-    }
+    fun getResults(user: UserEntity): Observable<ResultsPartialState> =
+        repository.getResults(user)
+            .map { ResultsPartialState.ResultsList(it).partial() }
+            .startWith(ResultsPartialState.Loading(true))
+            .onErrorReturn { ResultsPartialState.Error(it) }
+            .endWith(ResultsPartialState.Loading(false))
 
 }
