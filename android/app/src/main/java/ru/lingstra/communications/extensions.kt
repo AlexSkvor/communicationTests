@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
+import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupWithNavController
@@ -58,3 +59,10 @@ fun String.toIntOrMinusOne(): Int = try {
 
 inline fun <reified T, N> Single<List<T>>.flattenMap(crossinline mapper: (T) -> N): Single<List<N>> =
     flattenAsFlowable { it }.map { mapper(it) }.toList()
+
+fun BottomNavigationView.setupLongText() {
+    val menuView = this.getChildAt(0) as? ViewGroup ?: return
+    menuView.forEach {
+        it.findViewById<View>(R.id.largeLabel)?.setPadding(0, 0, 0, 40)
+    }
+}

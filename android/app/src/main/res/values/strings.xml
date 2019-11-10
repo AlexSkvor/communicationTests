@@ -3,9 +3,9 @@
     <string name="stub">TODO</string>
     <string name="errorHappened">Случилась ошибка!</string>
 
-    <!--Token-->
     <string name="setNewTokenHint">Введите токен в поле ниже и нажмите сохранить</string>
     <string name="results">Мои результаты</string>
+    <string name="testsList">Все тесты</string>
     <string name="save">Сохранить</string>
 
     <string name="start">Начать</string>
@@ -17,7 +17,6 @@
 
     <string name="testName">Тест: %s</string>
     <string name="questionsNumber">Вопросов: %d</string>
-    <string name="testsList">Тесты</string>
     <string name="completeTest">Завершить тест</string>
     <string name="answers">Ответы:</string>
     <string name="newUserNameHint">Имя нового пользователя</string>

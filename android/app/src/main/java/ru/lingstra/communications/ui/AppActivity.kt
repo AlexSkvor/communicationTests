@@ -14,6 +14,7 @@ import ru.lingstra.communications.R
 import ru.lingstra.communications.domain.app.AppViewState
 import ru.lingstra.communications.presentation.app.AppPresenter
 import ru.lingstra.communications.presentation.app.AppView
+import ru.lingstra.communications.setupLongText
 import ru.lingstra.communications.setupWithNavControllerReselectionDisabled
 import ru.lingstra.communications.system.NavigationManager
 import ru.lingstra.communications.toothpick.DI
@@ -71,6 +72,7 @@ class AppActivity : MviActivity<AppView, AppPresenter>(), AppView {
 
     override fun onResume() {
         super.onResume()
+        bottomNavigation.setupLongText()
         bottomNavigation.setupWithNavControllerReselectionDisabled(navController)
     }
 
