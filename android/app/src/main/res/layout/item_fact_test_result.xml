@@ -42,7 +42,7 @@
         android:layout_marginStart="@dimen/marginNormal"
         android:layout_marginTop="@dimen/marginNormal"
         android:layout_marginEnd="@dimen/marginNormal"
-        android:background="@color/textAccentColor"
+        android:background="#445A0C36"
         app:layout_constraintTop_toBottomOf="@id/testName" />
 
     <TextView
