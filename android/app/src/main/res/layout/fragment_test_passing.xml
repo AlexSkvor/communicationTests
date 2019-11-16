@@ -46,6 +46,7 @@
         android:layout_marginEnd="@dimen/marginNormal"
         android:layout_marginBottom="@dimen/marginNormal"
         android:gravity="top"
+        android:nestedScrollingEnabled="true"
         android:scrollbars="vertical"
         android:singleLine="false"
         android:textColor="@color/bottomMenuSecondaryColor"

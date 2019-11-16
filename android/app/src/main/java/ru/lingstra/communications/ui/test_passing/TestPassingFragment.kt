@@ -2,6 +2,7 @@ package ru.lingstra.communications.ui.test_passing
 
 import android.content.Context
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -83,6 +84,8 @@ class TestPassingFragment : MviBaseFragment<TestPassingView, TestPassingPresente
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        result.movementMethod = ScrollingMovementMethod()
+        description.movementMethod = ScrollingMovementMethod()
         (requireActivity() as AppActivity).bottomNavigationVisibility = false
         setHasOptionsMenu(true)
         questionsRecycler.layoutManager = LinearLayoutManager(requireContext())
