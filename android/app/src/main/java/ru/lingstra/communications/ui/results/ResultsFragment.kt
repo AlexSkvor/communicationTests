@@ -12,6 +12,7 @@ import ru.lingstra.communications.domain.result.ResultsViewState
 import ru.lingstra.communications.presentation.token.ResultPresenter
 import ru.lingstra.communications.presentation.token.ResultView
 import ru.lingstra.communications.ui.base.MviBaseFragment
+import ru.lingstra.communications.ui.utils.ItemDecoration
 import ru.lingstra.communications.ui.utils.delegate.CompositeDelegateAdapter
 import ru.lingstra.communications.ui.utils.delegate.pressedItems
 
@@ -42,6 +43,8 @@ class ResultsFragment : MviBaseFragment<ResultView, ResultPresenter>(), ResultVi
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
         resultsRecycler.layoutManager = LinearLayoutManager(requireContext())
+        val space = resources.getDimensionPixelSize(R.dimen.marginNormal)
+        resultsRecycler.addItemDecoration(ItemDecoration(space))
         resultsRecycler.adapter = adapter
     }
 
