@@ -65,8 +65,12 @@ class AppActivity : MviActivity<AppView, AppPresenter>(), AppView {
     private fun navigate(action: NavigationManager.NavigationAction) {
         when (action) {
             is NavigationManager.NavigationAction.Screen -> navController.navigate(action.screenId)
-            is NavigationManager.NavigationAction.Back -> navController.popBackStack()
+            is NavigationManager.NavigationAction.Back -> navController.navigateUp()
         }
+    }
+
+    override fun onBackPressed() {
+        navController.navigateUp()
     }
 
     private fun nothingToRender() {}
