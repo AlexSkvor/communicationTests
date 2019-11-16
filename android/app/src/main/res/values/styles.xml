@@ -12,7 +12,7 @@
     </style>
 
     <style name="AppTheme.BlueTextInputLayout">
-        <item name="android:textColor">@color/blueTextColor</item>
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textSize">@dimen/auth_font_small</item>
     </style>
 

@@ -32,7 +32,7 @@ class NewUserFragment : MviBaseDialogFragment<StubView, StubPresenter>(), StubVi
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         inflatedView = requireActivity().layoutInflater.inflate(layoutRes, null)
 
-        return AlertDialog.Builder(requireContext(), R.style.DialogTheme)
+        return AlertDialog.Builder(requireContext())
             .setView(inflatedView)
             .setCancelable(false)
             .create()
