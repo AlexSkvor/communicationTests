@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/round_outline"
+    android:elevation="20dp"
     android:orientation="vertical"
     tools:ignore="UseCompoundDrawables">
 
@@ -13,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/marginSuperBig"
         android:textAlignment="textStart"
-        android:layout_marginTop="@dimen/marginSuperBig"
+        android:layout_marginTop="@dimen/marginNormal"
         android:textColor="@color/black"
         android:textSize="@dimen/textSizeExtraBig"
         app:layout_constraintEnd_toStartOf="@id/favouriteImage"
@@ -28,9 +30,9 @@
         android:layout_marginEnd="@dimen/marginNormal"
         android:contentDescription="@string/stub"
         android:src="@drawable/ic_not_favourite_black_24dp"
-        app:layout_constraintBottom_toBottomOf="@id/testName"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/testName" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/questionsCount"
@@ -41,8 +43,10 @@
         android:gravity="start"
         android:textColor="@color/textAccentColor"
         android:textSize="@dimen/textSizeBig"
+        android:layout_marginBottom="@dimen/marginNormal"
         app:layout_constraintStart_toStartOf="@id/testName"
         app:layout_constraintTop_toBottomOf="@id/testName"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:text="questions number: 4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

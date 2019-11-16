@@ -13,10 +13,12 @@ import ru.lingstra.communications.domain.test_list.TestsListViewState
 import ru.lingstra.communications.presentation.list.TestsListPresenter
 import ru.lingstra.communications.presentation.list.TestsListView
 import ru.lingstra.communications.ui.base.MviBaseFragment
+import ru.lingstra.communications.ui.utils.ItemDecoration
 import ru.lingstra.communications.ui.utils.delegate.CompositeDelegateAdapter
 import ru.lingstra.communications.ui.utils.delegate.editItems
 import ru.lingstra.communications.ui.utils.delegate.pressedItems
 
+//TODO reload after sync
 class TestsListFragment : MviBaseFragment<TestsListView, TestsListPresenter>(), TestsListView {
 
     override val layoutRes: Int
@@ -49,6 +51,8 @@ class TestsListFragment : MviBaseFragment<TestsListView, TestsListPresenter>(), 
         super.onViewCreated(view, savedInstanceState)
         testsRecycler.layoutManager = LinearLayoutManager(requireContext())
         testsRecycler.adapter = testsAdapter
+        val space = resources.getDimensionPixelSize(R.dimen.marginNormal)
+        testsRecycler.addItemDecoration(ItemDecoration(space))
         loadListRelay.accept(Unit)
     }
 }
