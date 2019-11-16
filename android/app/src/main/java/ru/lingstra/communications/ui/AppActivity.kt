@@ -22,7 +22,14 @@ import ru.lingstra.communications.ui.base.ProgressDialogFragment
 import ru.lingstra.communications.visible
 import toothpick.Toothpick
 import javax.inject.Inject
-
+/**
+ * TODO list:
+ * 1) пролистывание в длинных текстовых полях (описание теста и результат) в текстовых полях
+ * 2) убрать обводку с элементов списка, ослабить тени
+ * 3) радом с избранное в менюшке поставить галочку, если выбрано
+ * 4) разворачивание текста в результатах
+ * 5) кнопка завершить тест и другие - закругление углов, поправить цвет
+ * */
 class AppActivity : MviActivity<AppView, AppPresenter>(), AppView {
 
     private val scope = Toothpick.openScope(DI.APP_SCOPE)
