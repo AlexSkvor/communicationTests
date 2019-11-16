@@ -73,11 +73,15 @@ class TestsListPresenter @Inject constructor(
             .filter { prefs.user.isNotEmpty() }
             .map { TestsListPartialState.TestPressed(it) }
 
+        val userChangedAction = prefs.userChanges()
+            .switchMap { interactor.getTestsList() }
+
         val list = listOf(
             loadListAction,
             clickedAction,
             favouriteAction,
-            favouriteSettingAction
+            favouriteSettingAction,
+            userChangedAction
         )
         return Observable.merge(list)
     }

@@ -18,7 +18,6 @@ import ru.lingstra.communications.ui.utils.delegate.CompositeDelegateAdapter
 import ru.lingstra.communications.ui.utils.delegate.editItems
 import ru.lingstra.communications.ui.utils.delegate.pressedItems
 
-//TODO reload after sync
 class TestsListFragment : MviBaseFragment<TestsListView, TestsListPresenter>(), TestsListView {
 
     override val layoutRes: Int
