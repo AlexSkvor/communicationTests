@@ -4,7 +4,7 @@
     <string name="errorHappened">Случилась ошибка!</string>
 
     <string name="setNewTokenHint">Введите токен в поле ниже и нажмите сохранить</string>
-    <string name="results">Мои результаты</string>
+    <string name="results">Результаты</string>
     <string name="testsList">Все тесты</string>
     <string name="save">Сохранить</string>
 
