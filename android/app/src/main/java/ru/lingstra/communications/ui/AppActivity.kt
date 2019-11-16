@@ -19,6 +19,7 @@ import ru.lingstra.communications.setupWithNavControllerReselectionDisabled
 import ru.lingstra.communications.system.NavigationManager
 import ru.lingstra.communications.toothpick.DI
 import ru.lingstra.communications.ui.base.ProgressDialogFragment
+import ru.lingstra.communications.visible
 import toothpick.Toothpick
 import javax.inject.Inject
 
@@ -109,4 +110,9 @@ class AppActivity : MviActivity<AppView, AppPresenter>(), AppView {
         }
     }
 
+    var bottomNavigationVisibility: Boolean
+        set(value) {
+            bottomNavigation.visible = value
+        }
+        get() = bottomNavigation.visible
 }

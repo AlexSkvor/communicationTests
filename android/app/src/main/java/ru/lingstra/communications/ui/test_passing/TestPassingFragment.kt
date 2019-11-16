@@ -12,6 +12,7 @@ import ru.lingstra.communications.domain.models.Test
 import ru.lingstra.communications.domain.test_passing.TestPassingViewState
 import ru.lingstra.communications.presentation.test_passing.TestPassingPresenter
 import ru.lingstra.communications.presentation.test_passing.TestPassingView
+import ru.lingstra.communications.ui.AppActivity
 import ru.lingstra.communications.ui.base.MviBaseFragment
 import ru.lingstra.communications.ui.utils.delegate.CompositeDelegateAdapter
 import ru.lingstra.communications.ui.utils.delegate.pressedItems
@@ -36,6 +37,11 @@ class TestPassingFragment : MviBaseFragment<TestPassingView, TestPassingPresente
     override fun completeIntent(): Observable<Unit> = completeButton.clicks()
 
     override fun render(state: TestPassingViewState) {
+        if (state.started) startedRender(state)
+        else notStartedRender(state)
+    }
+
+    private fun startedRender(state: TestPassingViewState){
         if (state.result == null) {
             titleTest.text = state.test.name
             description.text = state.test.description
@@ -53,6 +59,10 @@ class TestPassingFragment : MviBaseFragment<TestPassingView, TestPassingPresente
         }
     }
 
+    private fun notStartedRender(state: TestPassingViewState){
+        requireActivity().title = state.test.name
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         questionsAdapter = CompositeDelegateAdapter.Companion.Builder<Test.Question>()
@@ -62,8 +72,15 @@ class TestPassingFragment : MviBaseFragment<TestPassingView, TestPassingPresente
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as AppActivity).bottomNavigationVisibility = false
         setHasOptionsMenu(true)
         questionsRecycler.layoutManager = LinearLayoutManager(requireContext())
         questionsRecycler.adapter = questionsAdapter
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        (requireActivity() as AppActivity).bottomNavigationVisibility = true
+        requireActivity().title = getString(R.string.app_name)
     }
 }
