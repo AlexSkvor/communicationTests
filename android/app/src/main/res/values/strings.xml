@@ -20,9 +20,12 @@
     <string name="completeTest">Завершить тест</string>
     <string name="answers">Ответы:</string>
     <string name="newUserNameHint">Имя нового пользователя</string>
+    <string name="newUserTitle">Новый пользователь</string>
     <string name="chooseUserBefore">Сначала выберете пользователя!</string>
     <string name="passingDate">Пройден: %s</string>
 
     <string name="userExistsError">Пользователь с именем %s уже существует!</string>
+    <string name="cancel">Отмена</string>
+    <string name="add">Добавить</string>
 
 </resources>

@@ -14,54 +14,22 @@
             android:layout_marginTop="@dimen/marginBig"
             android:layout_marginEnd="@dimen/marginNormal"
             android:layout_marginBottom="@dimen/marginNormal"
-            app:layout_constraintBottom_toTopOf="@id/inputNewUserName"
+            app:layout_constraintBottom_toTopOf="@id/addUserButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_user" />
 
-    <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputNewUserName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marginNormal"
-            android:layout_marginTop="@dimen/marginBig"
-            android:layout_marginEnd="@dimen/marginNormal"
-            android:layout_marginBottom="@dimen/marginBig"
-            android:hint="@string/newUserNameHint"
-            android:visibility="visible"
-            app:hintTextAppearance="@style/AppTheme.BlueTextInputLayout"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/addUserButton"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:visibility="visible">
-
-        <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/newUserNameEdit"
-                style="@style/AppTheme.DefaultEditText"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:imeOptions="actionNext"
-                android:inputType="textMultiLine"
-                android:maxLength="1024"
-                tools:visibility="visible" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/addUserButton"
-            android:layout_width="0dp"
-            android:layout_height="24dp"
-            android:layout_gravity="bottom"
-            android:layout_marginStart="@dimen/marginBig"
-            android:layout_marginEnd="@dimen/marginBig"
-            android:layout_marginBottom="@dimen/marginBig"
-            android:layout_weight="3"
-            android:src="@drawable/ic_add_white_24dp"
-            app:backgroundTint="@color/colorPrimary"
-            app:fabCustomSize="24dp"
-            app:layout_constraintBottom_toBottomOf="@id/inputNewUserName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/inputNewUserName" />
+        android:id="@+id/addUserButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginEnd="@dimen/marginHuge"
+        android:layout_marginBottom="@dimen/marginHuge"
+        android:src="@drawable/ic_add_white_24dp"
+        app:backgroundTint="@color/textAccentColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

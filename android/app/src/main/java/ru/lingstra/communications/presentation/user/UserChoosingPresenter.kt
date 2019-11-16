@@ -53,21 +53,12 @@ class UserChoosingPresenter @Inject constructor(
         val loadAction = intent(UserChoosingView::init)
             .switchMap { interactor.getUsers() }
 
-        val newUserAction = intent(UserChoosingView::newUser)
-            .filter { it.isNotEmpty() }
-            .withLatestFrom(viewStateObservable,
-                BiFunction<String, UserChoosingViewState, Pair<String, Boolean>> { new, state ->
-                    new to (state.users.map { it.name }.contains(new))
-                })
-            .doOnNext { if (it.second) systemMessage.send(resourceManager.getString(R.string.userExistsError, it.first)) }
-            .filter { !it.second }
-            .map { it.first }
-            .switchMap { interactor.addNewUserAndReloadList(it) }
+        val userAdditionsAction = interactor.userAdditions()
 
         val deleteAction = intent(UserChoosingView::deleteUser)
             .switchMap { interactor.deleteUserAndReloadList(it) }
 
-        val list = listOf(loadAction, newUserAction, deleteAction)
+        val list = listOf(loadAction, deleteAction, userAdditionsAction)
         return Observable.merge(list)
     }
 }

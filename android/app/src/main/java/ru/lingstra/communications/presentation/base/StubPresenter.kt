@@ -1,5 +1,7 @@
 package ru.lingstra.communications.presentation.base
 
-class StubPresenter : BaseMviPresenter<StubView, Any>() {
+import javax.inject.Inject
+
+class StubPresenter @Inject constructor(): BaseMviPresenter<StubView, Any>() {
     override fun bindIntents() {}
 }

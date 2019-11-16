@@ -1,6 +1,7 @@
 package ru.lingstra.communications
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,5 +65,16 @@ fun BottomNavigationView.setupLongText() {
     val menuView = this.getChildAt(0) as? ViewGroup ?: return
     menuView.forEach {
         it.findViewById<View>(R.id.largeLabel)?.setPadding(0, 0, 0, 40)
+    }
+}
+
+inline fun <reified T : Any> Bundle.withArgument(key: String, value: T?): Bundle {
+    return if (value == null) this
+    else when (value) {
+        is String -> this.also { putString(key, value) }
+        is Int -> this.also { putInt(key, value) }
+        is Long -> this.also { putLong(key, value) }
+        is Boolean -> this.also { putBoolean(key, value) }
+        else -> throw IllegalArgumentException("Wrong value typeChosen! ${value::class}")
     }
 }

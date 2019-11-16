@@ -26,4 +26,11 @@
         <item name="colorControlActivated">@color/textAccentColor</item>
     </style>
 
+    <style name="DialogTheme" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+        <item name="windowFixedHeightMajor">25%</item>
+        <item name="windowFixedHeightMinor">25%</item>
+    </style>
+
 </resources>

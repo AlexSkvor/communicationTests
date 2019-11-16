@@ -7,7 +7,6 @@ import ru.lingstra.communications.domain.user.UserChoosingViewState
 
 interface UserChoosingView : MvpView {
     fun init(): Observable<Unit> = Observable.just(Unit)
-    fun newUser(): Observable<String>
     fun deleteUser(): Observable<UserEntity>
 
     fun render(state: UserChoosingViewState)
