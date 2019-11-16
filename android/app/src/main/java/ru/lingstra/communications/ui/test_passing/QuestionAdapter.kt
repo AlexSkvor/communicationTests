@@ -1,16 +1,18 @@
 package ru.lingstra.communications.ui.test_passing
 
 import android.widget.RadioButton
-import androidx.core.content.ContextCompat
 import com.jakewharton.rxrelay2.PublishRelay
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.item_question.view.*
-import ru.lingstra.communications.R
 import ru.lingstra.communications.domain.models.Test
 import ru.lingstra.communications.ui.utils.delegate.DelegateAdapter
 import ru.lingstra.communications.ui.utils.delegate.UserAction
+import android.view.LayoutInflater
+import ru.lingstra.communications.R
 
-class QuestionAdapter : DelegateAdapter<Test.Question>() {
+class QuestionAdapter(
+    private val inflater: LayoutInflater
+) : DelegateAdapter<Test.Question>() {
 
     private val relay = PublishRelay.create<UserAction<Test.Question>>()
     override fun getAction(): Observable<UserAction<Test.Question>> = relay.hide()
@@ -20,9 +22,8 @@ class QuestionAdapter : DelegateAdapter<Test.Question>() {
             questionText.text = item.text
             radioGroup.removeAllViews()
             item.answers.forEach {
-                val button = RadioButton(context)
+                val button = inflater.inflate(R.layout.radio_button, null) as RadioButton//RadioButton(context)
                 button.text = it.text
-                button.setTextColor(ContextCompat.getColor(context, R.color.colorTextGrey))
                 if (it.chosen) button.isChecked = true
                 radioGroup.addView(button)
                 button.setOnCheckedChangeListener { _, checked ->

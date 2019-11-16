@@ -40,6 +40,7 @@ class TestPassingPresenter @Inject constructor(
                 is TestPassingPartialState.ShowResult -> oldState.copy(result = it.result)
                 is TestPassingPartialState.Loading -> oldState
                 is TestPassingPartialState.Error -> oldState
+                is TestPassingPartialState.Start -> oldState.copy(started = true)
             }
         }
 
@@ -51,7 +52,10 @@ class TestPassingPresenter @Inject constructor(
             .switchMap { viewStateObservable.take(1) }
             .switchMap { interactor.saveResult(it.answers.values.toList(), it.test) }
 
-        val list = listOf(answerAction, completeAction)
+        val startAction = intent(TestPassingView::startIntent)
+            .map { TestPassingPartialState.Start }
+
+        val list = listOf(answerAction, completeAction, startAction)
         return Observable.merge(list)
     }
 

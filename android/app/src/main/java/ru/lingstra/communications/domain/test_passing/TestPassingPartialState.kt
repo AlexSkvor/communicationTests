@@ -11,6 +11,8 @@ sealed class TestPassingPartialState(private val logMessage: String) {
     data class Loading(val loading: Boolean) : TestPassingPartialState("Loading $loading")
     data class Error(val t: Throwable) : TestPassingPartialState("Error $t")
 
+    object Start: TestPassingPartialState("Start")
+
     fun partial() = this
     override fun toString(): String = logMessage
 }

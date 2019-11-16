@@ -9,6 +9,7 @@ interface TestPassingView : MvpView {
 
     fun answerChosenIntent(): Observable<Test.Question>
     fun completeIntent(): Observable<Unit>
+    fun startIntent(): Observable<Unit>
 
     fun render(state: TestPassingViewState)
 }

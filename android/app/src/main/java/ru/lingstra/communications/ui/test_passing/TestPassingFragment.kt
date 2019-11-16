@@ -2,6 +2,7 @@ package ru.lingstra.communications.ui.test_passing
 
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.view.clicks
@@ -23,6 +24,8 @@ const val ARG_TAG_TEST_PASSING_FRAGMENT: String = "TestPassingFragment"
 class TestPassingFragment : MviBaseFragment<TestPassingView, TestPassingPresenter>(),
     TestPassingView {
 
+    override fun startIntent(): Observable<Unit> = playButton.clicks()
+
     private lateinit var questionsAdapter: CompositeDelegateAdapter<Test.Question>
 
     override val layoutRes: Int
@@ -41,32 +44,40 @@ class TestPassingFragment : MviBaseFragment<TestPassingView, TestPassingPresente
         else notStartedRender(state)
     }
 
-    private fun startedRender(state: TestPassingViewState){
+    private fun startedRender(state: TestPassingViewState) {
+
         if (state.result == null) {
-            titleTest.text = state.test.name
-            description.text = state.test.description
+            completedGroup.visible = false
+            testStartedGroup.visible = true
+            testDescriptionGroup.visible = false
             if (questionsAdapter.itemCount != state.test.questions.size) {
                 questionsAdapter.replaceData(state.test.questions)
             }
             completeButton.visible = (state.test.questions.size == state.answers.size)
         } else {
-            questionsRecycler.visible = false
-            completeButton.visible = false
-            backButton.visible = true
+            completedGroup.visible = true
+            testStartedGroup.visible = false
+            testDescriptionGroup.visible = false
             backButton.setOnClickListener { requireActivity().onBackPressed() }
-            result.visible = true
             result.text = state.result.text
         }
     }
 
-    private fun notStartedRender(state: TestPassingViewState){
+    private fun notStartedRender(state: TestPassingViewState) {
+        completedGroup.visible = false
+        testStartedGroup.visible = false
+        testDescriptionGroup.visible = true
+
         requireActivity().title = state.test.name
+        description.text = state.test.description
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        val inflater = requireActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater?
+        requireNotNull(inflater)
         questionsAdapter = CompositeDelegateAdapter.Companion.Builder<Test.Question>()
-            .add(QuestionAdapter())
+            .add(QuestionAdapter(inflater))
             .build()
     }
 

@@ -11,4 +11,5 @@
     <color name="textAccentColor">#5A0C36</color>
     <color name="bottomMenuSecondaryColor">#061E38</color>
     <color name="transparent">#00000000</color>
+    <color name="orange">#FD8653</color>
 </resources>
