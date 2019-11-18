@@ -11,6 +11,7 @@ import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_app.*
 import org.jetbrains.anko.toast
 import ru.lingstra.communications.R
+import ru.lingstra.communications.data.prefs.AppPrefs
 import ru.lingstra.communications.domain.app.AppViewState
 import ru.lingstra.communications.presentation.app.AppPresenter
 import ru.lingstra.communications.presentation.app.AppView
@@ -22,13 +23,13 @@ import ru.lingstra.communications.ui.base.ProgressDialogFragment
 import ru.lingstra.communications.visible
 import toothpick.Toothpick
 import javax.inject.Inject
+
+
 /**
  * TODO list:
  * 1) отступы поменять в результатах (появятся 3 точки, до них только текст!)
- * 2) убрать обводку с элементов списка
- * 3) радом с избранное в менюшке поставить галочку, если выбрано
- * 4) разворачивание текста в результатах
- * 5) кнопка завершить тест и другие - закругление углов, поправить цвет
+ * 2) разворачивание текста в результатах
+ * 3) кнопка завершить тест и другие - закругление углов, поправить цвет
  * */
 class AppActivity : MviActivity<AppView, AppPresenter>(), AppView {
 
@@ -110,11 +111,17 @@ class AppActivity : MviActivity<AppView, AppPresenter>(), AppView {
     }
 
     @Inject
+    lateinit var prefs: AppPrefs
+
+    @Inject
     lateinit var navigationManager: NavigationManager
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = true.also {
         when (item.itemId) {
-            R.id.favourites -> favouritesRelay.accept(Unit)
+            R.id.favourites -> {
+                favouritesRelay.accept(Unit)
+                item.isChecked = prefs.onlyFavourites
+            }
             R.id.changeUser -> changeUserRelay.accept(Unit)
             R.id.sync -> syncRelay.accept(Unit)
             R.id.exitUser -> finish()
