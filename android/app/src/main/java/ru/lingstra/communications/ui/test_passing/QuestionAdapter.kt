@@ -24,6 +24,7 @@ class QuestionAdapter(
             item.answers.forEach {
                 val button = inflater.inflate(R.layout.radio_button, null) as RadioButton//RadioButton(context)
                 button.text = it.text
+                button.textSize = 16f
                 if (it.chosen) button.isChecked = true
                 radioGroup.addView(button)
                 button.setOnCheckedChangeListener { _, checked ->

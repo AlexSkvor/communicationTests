@@ -27,8 +27,7 @@ import javax.inject.Inject
 
 /**
  * TODO list:
- * 1) отступы поменять в результатах (появятся 3 точки, до них только текст!)
- * 2) разворачивание текста в результатах
+ * 1) разворачивание текста в результатах
  * */
 class AppActivity : MviActivity<AppView, AppPresenter>(), AppView {
 
