@@ -9,7 +9,8 @@ class ItemDecoration(
 ): RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-        outRect.top = space
+        if (parent.childCount == 1) outRect.top = space
+        outRect.bottom = space
         outRect.left = space
         outRect.right = space
     }

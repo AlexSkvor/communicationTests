@@ -7,6 +7,5 @@ import ru.lingstra.communications.domain.result.ResultsViewState
 
 interface ResultView : MvpView {
     fun initialLoad(): Observable<Unit> = Observable.just(Unit)
-    fun resultClicked(): Observable<FactResult>
     fun render(state: ResultsViewState)
 }

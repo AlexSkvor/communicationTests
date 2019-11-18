@@ -8,7 +8,6 @@ import ru.lingstra.communications.domain.result.ResultsInteractor
 import ru.lingstra.communications.domain.result.ResultsPartialState
 import ru.lingstra.communications.domain.result.ResultsViewState
 import ru.lingstra.communications.presentation.base.BaseMviPresenter
-import ru.lingstra.communications.system.NavigationManager
 import ru.lingstra.communications.system.ResourceManager
 import ru.lingstra.communications.system.SystemMessage
 import timber.log.Timber
@@ -18,8 +17,7 @@ class ResultPresenter @Inject constructor(
     private val prefs: AppPrefs,
     private val systemMessage: SystemMessage,
     private val resourceManager: ResourceManager,
-    private val interactor: ResultsInteractor,
-    private val navigationManager: NavigationManager
+    private val interactor: ResultsInteractor
 ) : BaseMviPresenter<ResultView, ResultsViewState>() {
 
     override fun bindIntents() {
@@ -36,7 +34,6 @@ class ResultPresenter @Inject constructor(
             is ResultsPartialState.ResultsList -> oldState.copy(results = it.results)
             is ResultsPartialState.Error -> oldState
             is ResultsPartialState.Loading -> oldState
-            is ResultsPartialState.ResultPressed -> oldState
         }
     }
 
@@ -46,10 +43,6 @@ class ResultPresenter @Inject constructor(
                 is ResultsPartialState.Error -> {
                     systemMessage.send(resourceManager.getString(R.string.errorHappened))
                     Timber.e(it.error)
-                }
-                is ResultsPartialState.ResultPressed -> {
-                    systemMessage.send("Детальный просмотр не реализован")
-                    //TODO detailed screen
                 }
                 is ResultsPartialState.Loading -> systemMessage.showProgress(it.loading)
             }
@@ -62,9 +55,6 @@ class ResultPresenter @Inject constructor(
             .filter { prefs.user.isNotEmpty() }
             .switchMap { interactor.getResults() }
 
-        val resultPressedAction = intent(ResultView::resultClicked)
-            .map { ResultsPartialState.ResultPressed(it) }
-
         val favouriteSettingAction = prefs.onlyFavouritesFlagChanges()
             .switchMap { interactor.getResults() }
 
@@ -72,7 +62,7 @@ class ResultPresenter @Inject constructor(
             .switchMap { interactor.getResults() }
 
         val list =
-            listOf(loadAction, userChangedAction, resultPressedAction, favouriteSettingAction)
+            listOf(loadAction, userChangedAction, favouriteSettingAction)
         return Observable.merge(list)
     }
 }

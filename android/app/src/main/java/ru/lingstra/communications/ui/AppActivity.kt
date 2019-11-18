@@ -24,11 +24,6 @@ import ru.lingstra.communications.visible
 import toothpick.Toothpick
 import javax.inject.Inject
 
-
-/**
- * TODO list:
- * 1) разворачивание текста в результатах
- * */
 class AppActivity : MviActivity<AppView, AppPresenter>(), AppView {
 
     private val scope = Toothpick.openScope(DI.APP_SCOPE)

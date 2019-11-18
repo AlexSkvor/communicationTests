@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_results_list.*
 import ru.lingstra.communications.R
 import ru.lingstra.communications.domain.result.FactResult
@@ -14,7 +13,6 @@ import ru.lingstra.communications.presentation.token.ResultView
 import ru.lingstra.communications.ui.base.MviBaseFragment
 import ru.lingstra.communications.ui.utils.ItemDecoration
 import ru.lingstra.communications.ui.utils.delegate.CompositeDelegateAdapter
-import ru.lingstra.communications.ui.utils.delegate.pressedItems
 
 class ResultsFragment : MviBaseFragment<ResultView, ResultPresenter>(), ResultView {
 
@@ -29,8 +27,6 @@ class ResultsFragment : MviBaseFragment<ResultView, ResultPresenter>(), ResultVi
     override fun render(state: ResultsViewState) {
         adapter.replaceData(state.results)
     }
-
-    override fun resultClicked(): Observable<FactResult> = adapter.actions.pressedItems()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
