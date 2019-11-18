@@ -11,7 +11,7 @@ class AppInteractor @Inject constructor(
 
     fun synchronize(): Observable<AppPartialState> =
         repository.loadAllTests()
-            .toSingleDefault(AppPartialState.Loading(false).partial())
+            .toSingleDefault(AppPartialState.Loading(true).partial())
             .toObservable()
             .startWith(AppPartialState.Loading(true))
             .onErrorReturn { AppPartialState.Error(it) }

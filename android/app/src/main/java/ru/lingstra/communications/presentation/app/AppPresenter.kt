@@ -71,7 +71,10 @@ class AppPresenter @Inject constructor(
 
         val syncAction = intent(AppView::syncIntent)
             .switchMap { interactor.synchronize() }
-            .doOnNext { prefs.user = prefs.user }//dirty hack it will cause reload on all screens
+            .doOnNext {
+                if (it is AppPartialState.Loading && !it.loading)
+                    prefs.user = prefs.user
+            }//dirty hack it will cause reload on all screens
 
         val toast = systemMessage.notifier
             .filter { it.type is SystemMessage.Type.Toast }
