@@ -7,7 +7,8 @@ import ru.lingstra.communications.domain.models.Test
 data class FactResult(
     val time: DateTime,
     val user: UserEntity,
-    val test: Test
+    val test: Test,
+    var fullText: Boolean = false
 ) {
 
     val resultText: String by lazy {

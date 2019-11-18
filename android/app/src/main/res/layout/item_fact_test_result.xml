@@ -54,7 +54,7 @@
             android:layout_marginEnd="@dimen/marginNormal"
             android:layout_marginBottom="@dimen/marginNormal"
             android:ellipsize="end"
-            android:maxLines="5"
+            android:textSize="@dimen/textSizeBig"
             app:layout_constraintEnd_toStartOf="@id/resultShowMore"
             android:textColor="@color/textAccentColor"
             app:layout_constraintStart_toStartOf="parent"
