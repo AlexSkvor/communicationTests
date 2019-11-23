@@ -7,16 +7,28 @@ import ru.lingstra.communications.R
 
 class NavigationManager {
 
+    private var currentDestId: Int? = null
+
     val arguments: MutableMap<String, Any> = mutableMapOf()
 
-    private val notifierRelay = PublishRelay.create<NavigationAction>()
+    private val notifierRelay: PublishRelay<NavigationAction> =
+        PublishRelay.create<NavigationAction>()
     val actions: Observable<NavigationAction> = notifierRelay.hide()
 
     private fun acceptAction(action: NavigationAction) = notifierRelay.accept(action)
 
-    fun navigate(screenId: Int) = acceptAction(NavigationAction.Screen(screenId))
-    fun back() = acceptAction(NavigationAction.Back)
-    fun relogin() = acceptAction(NavigationAction.Screen(R.id.userChoosingFragment))
+    fun navigate(screenId: Int) {
+        if (currentDestId != screenId) {
+            currentDestId = screenId
+            acceptAction(NavigationAction.Screen(screenId))
+        }
+    }
+
+    fun back() = acceptAction(NavigationAction.Back).also { currentDestId = null }
+
+    private val syncRelay: PublishRelay<Unit> = PublishRelay.create<Unit>()
+    fun syncPlease() = syncRelay.accept(Unit)
+    val syncActions: Observable<Unit> = syncRelay.hide()
 
     sealed class NavigationAction {
         data class Screen(

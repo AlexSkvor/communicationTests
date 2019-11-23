@@ -67,14 +67,10 @@ class AppPresenter @Inject constructor(
             .subscribe { prefs.onlyFavourites = !prefs.onlyFavourites }.bind()
 
         intent(AppView::changeUser)
-            .subscribe { navigationManager.relogin() }.bind()
+            .subscribe { navigationManager.navigate(R.id.userChoosingFragment) }.bind()
 
-        val syncAction = intent(AppView::syncIntent)
-            .switchMap { interactor.synchronize() }
-            .doOnNext {
-                if (it is AppPartialState.Loading && !it.loading)
-                    prefs.user = prefs.user
-            }//dirty hack it will cause reload on all screens
+        intent(AppView::actionBack)
+            .subscribe { navigationManager.back() }.bind()
 
         val toast = systemMessage.notifier
             .filter { it.type is SystemMessage.Type.Toast }
@@ -86,6 +82,15 @@ class AppPresenter @Inject constructor(
 
         val refresh = intent(AppView::refresh)
             .map { AppPartialState.Refresh }
+
+        val syncIntent = Observable.merge(intent(AppView::syncIntent), navigationManager.syncActions)
+
+        val syncAction = syncIntent
+            .switchMap { interactor.synchronize() }
+            .doOnNext {
+                if (it is AppPartialState.Loading && !it.loading)
+                    prefs.user = prefs.user
+            }//dirty hack it will cause reload on all screens
 
         val navigation = navigationManager.actions
             .map { AppPartialState.Navigation(it) }

@@ -5,6 +5,7 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import ru.lingstra.communications.data.database.dao.UserDao
 import ru.lingstra.communications.data.database.entities.UserEntity
+import ru.lingstra.communications.data.prefs.AppPrefs
 import ru.lingstra.communications.system.schedulers.SchedulersProvider
 import java.util.*
 import javax.inject.Inject
@@ -18,7 +19,8 @@ interface UserChoosingRepos {
 
 class UserChoosingRepository @Inject constructor(
     private val userDao: UserDao,
-    private val schedulers: SchedulersProvider
+    private val schedulers: SchedulersProvider,
+    private val prefs: AppPrefs
 ) : UserChoosingRepos {
 
     override fun loadUsers(): Observable<List<UserEntity>> = userDao.getAll()
@@ -34,6 +36,7 @@ class UserChoosingRepository @Inject constructor(
     override fun addUser(name: String): Completable = Completable.fromAction {
         val newUser = UserEntity(id = UUID.randomUUID().toString(), name = name)
         userDao.insert(newUser)
+        prefs.user = newUser
     }.subscribeOn(schedulers.io())
         .observeOn(schedulers.ui())
 

@@ -9,6 +9,7 @@ interface AppView : MvpView {
     fun syncIntent(): Observable<Unit>
     fun onlyFavourites(): Observable<Unit>
     fun changeUser(): Observable<Unit>
+    fun actionBack(): Observable<Unit>
 
     fun render(state: AppViewState)
 }

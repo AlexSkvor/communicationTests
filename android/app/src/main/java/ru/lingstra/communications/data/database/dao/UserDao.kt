@@ -10,4 +10,7 @@ interface UserDao : BaseDao<UserEntity> {
 
     @Query("SELECT * from users")
     fun getAll(): Single<List<UserEntity>>
+
+    @Query("SELECT COUNT(*) from users")
+    fun count(): Int
 }

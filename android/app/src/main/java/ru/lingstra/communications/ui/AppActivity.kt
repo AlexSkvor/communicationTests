@@ -71,8 +71,11 @@ class AppActivity : MviActivity<AppView, AppPresenter>(), AppView {
         }
     }
 
+    private val backRelay = PublishRelay.create<Unit>()
+    override fun actionBack(): Observable<Unit> = backRelay.hide()
+
     override fun onBackPressed() {
-        navController.navigateUp()
+        backRelay.accept(Unit)
     }
 
     private fun nothingToRender() {}

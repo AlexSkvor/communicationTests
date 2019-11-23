@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jakewharton.rxbinding2.view.clicks
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_user_choosing.*
 import ru.lingstra.communications.R
@@ -64,7 +63,6 @@ class UserChoosingFragment : MviBaseFragment<UserChoosingView, UserChoosingPrese
         usersAdapter.actions.pressedItems()
             .subscribe {
                 appPrefs.user = it
-                usersAdapter.notifyDataSetChanged()
             }.bind()
     }
 
@@ -72,6 +70,10 @@ class UserChoosingFragment : MviBaseFragment<UserChoosingView, UserChoosingPrese
         super.onViewCreated(view, savedInstanceState)
         setupAdapters()
         addUserButton.setOnClickListener { openNewUserFragment() }
+
+        appPrefs.userChanges().subscribe {
+            usersAdapter.notifyDataSetChanged()
+        }.bind()
     }
 
     private fun setupAdapters() {

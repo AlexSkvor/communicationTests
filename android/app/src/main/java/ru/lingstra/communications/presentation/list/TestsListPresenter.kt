@@ -36,9 +36,15 @@ class TestsListPresenter @Inject constructor(
         when (it) {
             is TestsListPartialState.TestsList -> oldState.copy(tests = it.tests)
             is TestsListPartialState.Error -> oldState
-            is TestsListPartialState.Loading -> oldState
+            is TestsListPartialState.Loading -> loading(it.loading, oldState)
             is TestsListPartialState.TestPressed -> oldState
         }
+    }
+
+    private fun loading(showLoading: Boolean, oldState: TestsListViewState): TestsListViewState{
+        if (!showLoading && oldState.tests.isEmpty() && !prefs.onlyFavourites)
+            navigationManager.syncPlease()
+        return oldState
     }
 
     private fun subscribeActions(action: Observable<TestsListPartialState>) {
