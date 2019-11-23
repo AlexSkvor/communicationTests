@@ -3,6 +3,7 @@ package ru.lingstra.communications.ui
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.view.get
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.hannesdorfmann.mosby3.mvi.MviActivity
@@ -100,6 +101,7 @@ class AppActivity : MviActivity<AppView, AppPresenter>(), AppView {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_syncronize, menu)
+        menu?.get(1)?.isChecked = prefs.onlyFavourites
         return true
     }
 
