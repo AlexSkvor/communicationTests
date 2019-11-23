@@ -19,7 +19,7 @@ class QuestionAdapter(
 
     override fun onBind(item: Test.Question, holder: DelegateViewHolder) =
         with(holder.itemView) {
-            questionText.text = item.text
+            questionText.text = "\t" + item.text
             radioGroup.removeAllViews()
             item.answers.forEach {
                 val button = inflater.inflate(R.layout.radio_button, null) as RadioButton//RadioButton(context)

@@ -10,9 +10,7 @@
             android:id="@+id/questionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marginBig"
             android:layout_marginTop="@dimen/marginNormal"
-            android:layout_marginEnd="@dimen/marginBig"
             android:textColor="@color/black"
             android:textSize="@dimen/textSizeExtraBig"
             tools:text="Текст вопроса" />
@@ -21,9 +19,7 @@
             android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marginBig"
             android:layout_marginTop="@dimen/marginNormal"
-            android:layout_marginEnd="@dimen/marginBig"
             android:layout_marginBottom="@dimen/marginExtraBig"
             android:orientation="vertical" />
 

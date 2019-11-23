@@ -16,6 +16,7 @@ import ru.lingstra.communications.presentation.test_passing.TestPassingPresenter
 import ru.lingstra.communications.presentation.test_passing.TestPassingView
 import ru.lingstra.communications.ui.AppActivity
 import ru.lingstra.communications.ui.base.MviBaseFragment
+import ru.lingstra.communications.ui.utils.ItemDecoration
 import ru.lingstra.communications.ui.utils.delegate.CompositeDelegateAdapter
 import ru.lingstra.communications.ui.utils.delegate.pressedItems
 import ru.lingstra.communications.visible
@@ -89,6 +90,8 @@ class TestPassingFragment : MviBaseFragment<TestPassingView, TestPassingPresente
         (requireActivity() as AppActivity).bottomNavigationVisibility = false
         setHasOptionsMenu(true)
         questionsRecycler.layoutManager = LinearLayoutManager(requireContext())
+        val space = resources.getDimensionPixelSize(R.dimen.marginNormal)
+        questionsRecycler.addItemDecoration(ItemDecoration(space))
         questionsRecycler.adapter = questionsAdapter
     }
 
