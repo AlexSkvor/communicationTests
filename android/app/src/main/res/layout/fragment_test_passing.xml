@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginStart="@dimen/marginBig"
+        android:layout_marginStart="@dimen/marginSuperBig"
         android:layout_marginTop="@dimen/marginBig"
         android:layout_marginEnd="@dimen/marginBig"
         android:gravity="top"
