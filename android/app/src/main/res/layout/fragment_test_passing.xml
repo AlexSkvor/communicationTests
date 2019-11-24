@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/testPassingLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/description"
@@ -14,7 +13,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="@dimen/marginSuperBig"
         android:layout_marginTop="@dimen/marginBig"
-        android:layout_marginEnd="@dimen/marginBig"
+        android:layout_marginEnd="@dimen/marginSuperBig"
         android:gravity="top"
         android:scrollbars="vertical"
         android:singleLine="false"
@@ -38,11 +37,11 @@
 
     <TextView
         android:id="@+id/result"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/marginNormal"
+        android:layout_marginStart="@dimen/marginSuperBig"
         android:layout_marginTop="@dimen/marginBig"
-        android:layout_marginEnd="@dimen/marginNormal"
+        android:layout_marginEnd="@dimen/marginSuperBig"
         android:layout_marginBottom="@dimen/marginNormal"
         android:gravity="top"
         android:nestedScrollingEnabled="true"
