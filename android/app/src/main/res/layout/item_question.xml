@@ -1,27 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/questionItem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
     <TextView
             android:id="@+id/questionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginSuperBig"
             android:layout_marginTop="@dimen/marginNormal"
+            android:layout_marginEnd="@dimen/marginSuperBig"
             android:textColor="@color/black"
             android:textSize="@dimen/textSizeExtraBig"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Текст вопроса" />
 
     <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/marginExtraLarge"
+            android:layout_marginStart="@dimen/marginSuperBig"
             android:layout_marginTop="@dimen/marginNormal"
             android:layout_marginBottom="@dimen/marginExtraBig"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            android:layout_marginEnd="@dimen/marginSuperBig"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/questionText"
+            app:layout_constraintTop_toBottomOf="@id/questionText" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
