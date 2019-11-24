@@ -15,3 +15,13 @@ class ItemDecoration(
         outRect.right = space
     }
 }
+
+class ItemDecorationBottom(
+    private val space: Int
+): RecyclerView.ItemDecoration() {
+
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+        if (parent.childCount == 1) outRect.top = space
+        outRect.bottom = space
+    }
+}
