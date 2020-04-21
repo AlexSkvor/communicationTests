@@ -30,6 +30,7 @@ class TestsListPresenter @Inject constructor(
             actions.scan(TestsListViewState(), reducer).distinctUntilChanged(),
             TestsListView::render
         )
+
     }
 
     private val reducer = BiFunction { oldState: TestsListViewState, it: TestsListPartialState ->
